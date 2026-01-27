@@ -1,4 +1,4 @@
-name: EGX Alerts
+name: LuxAlgo Moving Average
 
 on:
   workflow_dispatch:
