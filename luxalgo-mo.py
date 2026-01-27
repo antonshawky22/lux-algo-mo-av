@@ -23,6 +23,11 @@ def send_telegram(text):
         print("Telegram send failed:", e)
 
 # =====================
+# Strategy name
+# =====================
+strategy_name = "LuxAlgo MO AV"
+
+# =====================
 # EGX symbols
 # =====================
 symbols = {
@@ -89,7 +94,6 @@ def fetch_data(ticker):
 # =====================
 for name, ticker in symbols.items():
     df = fetch_data(ticker)
-
     if df is None or len(df) < LENGTH + 5:
         data_failures.append(name)
         continue
@@ -187,10 +191,10 @@ with open(SIGNALS_FILE, "w") as f:
 # Telegram output
 # =====================
 if alerts:
-    send_telegram("🚨 EGX LuxAlgo + EMA50 Signals:\n\n" + "\n\n".join(alerts))
+    send_telegram(f"🚨 إشارات {strategy_name}:\n\n" + "\n\n".join(alerts))
 else:
     last_candle = max(last_candle_dates) if last_candle_dates else "غير متاح"
     send_telegram(
-        "ℹ️ لا توجد إشارات جديدة\n\n"
+        f"ℹ️ لا توجد إشارات جديدة ({strategy_name})\n\n"
         f"آخر شمعة محسوبة:\n📅 {last_candle}"
-)
+    )
