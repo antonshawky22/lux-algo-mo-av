@@ -196,5 +196,5 @@ else:
     last_candle = max(last_candle_dates) if last_candle_dates else "غير متاح"
     send_telegram(
         f"ℹ️ لا توجد إشارات جديدة ({strategy_name})\n\n"
-        f"آخر شمعة محسوبة:\n📅 {last_candle}"
+        f"last candle date:\n📅 {last_candle}"
     )
