@@ -33,5 +33,15 @@
     "support": 14.6,
     "resistance": 20.75,
     "last_signal": "SELL"
+  },
+  "MTIE": {
+    "support": 6.73,
+    "resistance": 7.75,
+    "last_signal": "SELL"
+  },
+  "COMI": {
+    "support": 98.3,
+    "resistance": 136.92,
+    "last_signal": "SELL"
   }
 }
