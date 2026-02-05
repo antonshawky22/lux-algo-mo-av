@@ -1,1 +1,37 @@
-{}
+{
+  "EFIH": {
+    "support": 14.6,
+    "resistance": 23.7,
+    "last_signal": "SELL"
+  },
+  "ABUK": {
+    "support": 45.18,
+    "resistance": 68.0,
+    "last_signal": "SELL"
+  },
+  "JUFO": {
+    "support": 22.51,
+    "resistance": 30.5,
+    "last_signal": "SELL"
+  },
+  "RAYA": {
+    "support": 2.66,
+    "resistance": 4.99,
+    "last_signal": "SELL"
+  },
+  "GBCO": {
+    "support": 24.68,
+    "resistance": 33.4,
+    "last_signal": "SELL"
+  },
+  "TMGH": {
+    "support": 70.2,
+    "resistance": 89.5,
+    "last_signal": "SELL"
+  },
+  "FWRY": {
+    "support": 14.6,
+    "resistance": 20.75,
+    "last_signal": "SELL"
+  }
+}
