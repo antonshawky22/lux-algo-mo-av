@@ -43,5 +43,20 @@
     "support": 98.3,
     "resistance": 136.92,
     "last_signal": "SELL"
+  },
+  "ETEL": {
+    "support": 51.92,
+    "resistance": 84.96,
+    "last_signal": "SELL"
+  },
+  "ISPH": {
+    "support": 10.0,
+    "resistance": 13.72,
+    "last_signal": "SELL"
+  },
+  "HRHO": {
+    "support": 24.18,
+    "resistance": 30.0,
+    "last_signal": "SELL"
   }
 }
