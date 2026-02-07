@@ -97,7 +97,7 @@ for name, ticker in symbols.items():
     last_candle_date = df.index[-1].date()
 
     # =====================
-    # حساب كل الموفنجات المطلوبة
+    # حساب الموفنجات
     # =====================
     df["EMA3"] = df["Close"].ewm(span=3, adjust=False).mean()
     df["EMA4"] = df["Close"].ewm(span=4, adjust=False).mean()
@@ -112,7 +112,6 @@ for name, ticker in symbols.items():
     # حساب RSI14
     # =====================
     df["RSI14"] = rsi(df["Close"], 14)
-
     last = df.iloc[-1]
 
     # =====================
@@ -124,10 +123,7 @@ for name, ticker in symbols.items():
         ema45 = last["EMA45"]
         ema55 = last["EMA55"]
         price = last["Close"]
-
-        if ema55 > ema45 > ema35 and price < ema25 and price < ema35:
-            return True
-        return False
+        return ema55 > ema45 > ema35 and price < ema25 and price < ema35
 
     # =====================
     # اتجاه صاعد
@@ -137,10 +133,7 @@ for name, ticker in symbols.items():
         ema35 = last["EMA35"]
         price = last["Close"]
         prev1_price = df["Close"].iloc[-2]
-
-        if ema25 > ema35 and price > ema35 and prev1_price > ema35:
-            return True
-        return False
+        return ema25 > ema35 and price > ema35 and prev1_price > ema35
 
     def uptrend_signals(last):
         price = last["Close"]
@@ -152,13 +145,10 @@ for name, ticker in symbols.items():
         rsi14 = last["RSI14"]
 
         # ---- شراء ----
-        
-    buy_signal = (
-    prev["EMA4"] <= prev["EMA9"] and
-    last["EMA4"] > last["EMA9"] and
-    last["RSI14"] < 70
-    )
-    # ---- بيع ----
+        ema_cross = ema4 > ema9 and df["EMA4"].iloc[-2] <= df["EMA9"].iloc[-2]
+        buy_signal = ema_cross and rsi14 < 70  # منع الشراء لو RSI14 >= 70
+
+        # ---- بيع ----
         sell_signal = ema3 < ema5 or price < ema25 or rsi14 >= 85
 
         return buy_signal, sell_signal
@@ -225,6 +215,7 @@ for name, ticker in symbols.items():
             else:
                 reason = "EMA3 < EMA5"
         else:
+            current_price = df["Close"].iloc[-1]
             if current_price < SUPPORT * (1 - STOPLOSS_PCT):
                 reason = f"Stop Loss - broke support ({SUPPORT:.2f})"
             else:
@@ -252,6 +243,6 @@ with open(SIGNALS_FILE, "w") as f:
 # إخطار Telegram
 # =====================
 if alerts:
-    send_telegram("🚦🚦 EGX Alerts 2:\n\n" + "\n".join(alerts))
+    send_telegram("🚦 EGX Alerts 2:\n\n" + "\n".join(alerts))
 else:
     send_telegram(f"egx alerts 2 ℹ️ No new signals\nLast candle: {last_candle_date}")
