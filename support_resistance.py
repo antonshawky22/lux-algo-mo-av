@@ -158,24 +158,21 @@ for name, ticker in symbols.items():
         ema3 = last_row["EMA3"]
         ema9 = last_row["EMA9"]
 
-        # ---- Buy ----
         buy_signal = (rsi14 < 40) and (price <= ema3 or price <= ema9)
+        sell_signal = (rsi14 > 60) or (price >= ema3 or price >= ema9) or (ema3 < ema9 and df["EMA3"].iloc[-2] >= df["EMA9"].iloc[-2])
+
+        reason = ""
         if buy_signal:
             reason = f"RSI < 40 & Price <= EMA3 or EMA9"
-        else:
-            reason = ""
-
-        # ---- Sell ----
-        sell_signal = (rsi14 > 60) or (price >= ema3 or price >= ema9) or (ema3 < ema9 and df["EMA3"].iloc[-2] >= df["EMA9"].iloc[-2])
-        if sell_signal:
-            reason_sell_parts = []
+        elif sell_signal:
+            reason_parts = []
             if rsi14 > 60:
-                reason_sell_parts.append("RSI > 60")
+                reason_parts.append("RSI > 60")
             if price >= ema3 or price >= ema9:
-                reason_sell_parts.append("Price >= EMA3 or EMA9")
+                reason_parts.append("Price >= EMA3 or EMA9")
             if ema3 < ema9 and df["EMA3"].iloc[-2] >= df["EMA9"].iloc[-2]:
-                reason_sell_parts.append("EMA3 cross EMA9 down")
-            reason = " or ".join(reason_sell_parts)
+                reason_parts.append("EMA3 cross EMA9 down")
+            reason = " or ".join(reason_parts)
         return buy_signal, sell_signal, reason
 
     # =====================
@@ -196,11 +193,11 @@ for name, ticker in symbols.items():
     prev_state = last_signals.get(name, {}).get("last_signal")
 
     if buy_signal and prev_state != "BUY":
-        alerts.append(f"🟢 BUY | {name} | {last['Close']:.2f} | {last_candle_date} | Reason: {reason}")
+        alerts.append(f"🟢 BUY | {name} | {last['Close']:.2f} | {last_candle_date} | Reason: {reason} | Trend: {direction_text}")
         new_signals[name] = {"last_signal": "BUY"}
 
     elif sell_signal and prev_state != "SELL":
-        alerts.append(f"🔴 SELL | {name} | {last['Close']:.2f} | {last_candle_date} | Reason: {reason}")
+        alerts.append(f"🔴 SELL | {name} | {last['Close']:.2f} | {last_candle_date} | Reason: {reason} | Trend: {direction_text}")
         new_signals[name] = {"last_signal": "SELL"}
 
 # =====================
