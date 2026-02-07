@@ -98,5 +98,17 @@
     "support": null,
     "resistance": null,
     "last_signal": "SELL"
+  },
+  "OFH": {
+    "last_signal": "SELL"
+  },
+  "EAST": {
+    "last_signal": "SELL"
+  },
+  "ORWE": {
+    "last_signal": "SELL"
+  },
+  "RMDA": {
+    "last_signal": "SELL"
   }
 }
