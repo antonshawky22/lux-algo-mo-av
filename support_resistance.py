@@ -152,9 +152,13 @@ for name, ticker in symbols.items():
         rsi14 = last["RSI14"]
 
         # ---- شراء ----
-        buy_signal = (ema4 >= ema9) and price > ema25  # تعديل: لمسة EMA4 مع EMA9
-
-        # ---- بيع ----
+        # 🟢 BUY
+buy_signal = (
+    prev["EMA4"] <= prev["EMA9"] and
+    last["EMA4"] > last["EMA9"] and
+    last["RSI14"] < 70
+)
+    # ---- بيع ----
         sell_signal = ema3 < ema5 or price < ema25 or rsi14 >= 85
 
         return buy_signal, sell_signal
