@@ -125,7 +125,7 @@ for name, ticker in symbols.items():
         )
 
     # =====================
-    # Uptrend (محسّن)
+    # Uptrend
     # =====================
     def is_uptrend(last):
         return (
@@ -139,19 +139,16 @@ for name, ticker in symbols.items():
             last["EMA4"] > last["EMA9"] and
             df["EMA4"].iloc[-2] <= df["EMA9"].iloc[-2]
         )
-
         buy_signal = ema_cross and last["RSI14"] < 70
-
         sell_signal = (
             (last["EMA3"] < last["EMA5"] and last["Close"] < last["EMA9"]) or
             last["Close"] < last["EMA25"] or
             last["RSI14"] >= 85
         )
-
         return buy_signal, sell_signal
 
     # =====================
-    # Sideways (New Strategy)
+    # Sideways (New Strategy with Reason)
     # =====================
     def sideways_signals(df):
         last_N = df.tail(50)
@@ -163,11 +160,23 @@ for name, ticker in symbols.items():
 
         # ---- Buy ----
         buy_signal = (rsi14 < 40) and (price <= ema3 or price <= ema9)
+        if buy_signal:
+            reason = f"RSI < 40 & Price <= EMA3 or EMA9"
+        else:
+            reason = ""
 
         # ---- Sell ----
         sell_signal = (rsi14 > 60) or (price >= ema3 or price >= ema9) or (ema3 < ema9 and df["EMA3"].iloc[-2] >= df["EMA9"].iloc[-2])
-
-        return buy_signal, sell_signal
+        if sell_signal:
+            reason_sell_parts = []
+            if rsi14 > 60:
+                reason_sell_parts.append("RSI > 60")
+            if price >= ema3 or price >= ema9:
+                reason_sell_parts.append("Price >= EMA3 or EMA9")
+            if ema3 < ema9 and df["EMA3"].iloc[-2] >= df["EMA9"].iloc[-2]:
+                reason_sell_parts.append("EMA3 cross EMA9 down")
+            reason = " or ".join(reason_sell_parts)
+        return buy_signal, sell_signal, reason
 
     # =====================
     # Decision
@@ -175,21 +184,23 @@ for name, ticker in symbols.items():
     if is_downtrend(last):
         buy_signal = sell_signal = False
         direction_text = "⚪ اتجاه هابط"
+        reason = ""
     elif is_uptrend(last):
         buy_signal, sell_signal = uptrend_signals(last)
         direction_text = "🟢 ترند صاعد"
+        reason = ""
     else:
-        buy_signal, sell_signal = sideways_signals(df)
+        buy_signal, sell_signal, reason = sideways_signals(df)
         direction_text = "🟡 اتجاه عرضي"
 
     prev_state = last_signals.get(name, {}).get("last_signal")
 
     if buy_signal and prev_state != "BUY":
-        alerts.append(f"🟢 BUY | {name} | {last['Close']:.2f} | {last_candle_date}")
+        alerts.append(f"🟢 BUY | {name} | {last['Close']:.2f} | {last_candle_date} | Reason: {reason}")
         new_signals[name] = {"last_signal": "BUY"}
 
     elif sell_signal and prev_state != "SELL":
-        alerts.append(f"🔴 SELL | {name} | {last['Close']:.2f} | {last_candle_date}")
+        alerts.append(f"🔴 SELL | {name} | {last['Close']:.2f} | {last_candle_date} | Reason: {reason}")
         new_signals[name] = {"last_signal": "SELL"}
 
 # =====================
