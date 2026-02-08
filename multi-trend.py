@@ -1,4 +1,4 @@
-print("EGX ALERTS - Data Check Only")
+print("EGX ALERTS - Phase 2: EMA60 Trend Classification")
 
 import yfinance as yf
 import requests
@@ -9,7 +9,6 @@ import pandas as pd
 # =====================
 # Telegram settings
 # =====================
-
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
@@ -26,7 +25,6 @@ def send_telegram(text):
 # =====================
 # EGX symbols
 # =====================
-
 symbols = {
     "OFH": "OFH.CA","OLFI": "OLFI.CA","EMFD": "EMFD.CA","ETEL": "ETEL.CA",
     "EAST": "EAST.CA","EFIH": "EFIH.CA","ABUK": "ABUK.CA","OIH": "OIH.CA",
@@ -41,18 +39,27 @@ symbols = {
 }
 
 # =====================
+# Load last signals
+# =====================
+SIGNALS_FILE = "last_signals.json"
+
+try:
+    with open(SIGNALS_FILE, "r") as f:
+        last_signals = json.load(f)
+except:
+    last_signals = {}
+
+new_signals = last_signals.copy()
+alerts = []
+data_failures = []
+last_candle_date = None
+
+# =====================
 # Helpers
 # =====================
-
 def fetch_data(ticker):
     try:
-        df = yf.download(
-            ticker,
-            period="6mo",
-            interval="1d",
-            auto_adjust=True,
-            progress=False
-        )
+        df = yf.download(ticker, period="6mo", interval="1d", auto_adjust=True, progress=False)
         if df is None or df.empty:
             return None
         if isinstance(df.columns, pd.MultiIndex):
@@ -62,41 +69,54 @@ def fetch_data(ticker):
         return None
 
 # =====================
-# Main Logic (Data only)
+# Main Logic
 # =====================
-
-alerts = []
-data_failures = []
-last_candle_date = None
+EMA_PERIOD = 60
+LOOKBACK = 50
+THRESHOLD = 0.8  # 80%
 
 for name, ticker in symbols.items():
     df = fetch_data(ticker)
-
-    if df is None or len(df) < 60:
+    if df is None or len(df) < LOOKBACK:
         data_failures.append(name)
         continue
 
-    last = df.iloc[-1]
     last_candle_date = df.index[-1].date()
 
-    alerts.append(
-        f"{name} | {last['Close']:.2f} | {last_candle_date}"
-    )
+    df["EMA60"] = df["Close"].ewm(span=EMA_PERIOD, adjust=False).mean()
+
+    # آخر 50 شمعة
+    recent_closes = df["Close"].iloc[-LOOKBACK:]
+    recent_ema = df["EMA60"].iloc[-LOOKBACK:]
+
+    bullish_ratio = (recent_closes > recent_ema).sum() / LOOKBACK
+    bearish_ratio = (recent_closes < recent_ema).sum() / LOOKBACK
+
+    # =====================
+    # Trend classification
+    # =====================
+    if bullish_ratio >= THRESHOLD:
+        trend = "ترند صاعد"
+    elif bearish_ratio >= THRESHOLD:
+        trend = "⚪ اتجاه هابط"
+    else:
+        trend = "اتجاه عرضي"
+
+    alerts.append(f"{name} | {df['Close'].iloc[-1]:.2f} | {last_candle_date} | Trend: {trend}")
 
 # =====================
-# Data failures
+# Data failures alert
 # =====================
-
 if data_failures:
-    alerts.append(
-        "⚠️ Data failure:\n- " + "\n- ".join(data_failures)
-    )
+    alerts.append("⚠️ Failed to fetch data:\n- " + "\n- ".join(data_failures))
 
 # =====================
 # Notify
 # =====================
+with open(SIGNALS_FILE, "w") as f:
+    json.dump(new_signals, f, indent=2)
 
 if alerts:
     send_telegram("🚦 EGX Data Status:\n\n" + "\n".join(alerts))
 else:
-    send_telegram("ℹ️ No data available")
+    send_telegram(f"ℹ️ No new signals\nLast candle: {last_candle_date}")
