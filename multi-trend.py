@@ -1,4 +1,4 @@
-print("EGX ALERTS - Phase 3: Organized Alerts with Buy/Sell & Direction Change")
+print("EGX ALERTS - Phase 3: Organized Alerts with Buy/Sell & Direction Change (Fixed)")
 
 import yfinance as yf
 import requests
@@ -42,7 +42,6 @@ symbols = {
 # Load last signals
 # =====================
 SIGNALS_FILE = "last_signals.json"
-
 try:
     with open(SIGNALS_FILE, "r") as f:
         last_signals = json.load(f)
@@ -120,7 +119,6 @@ for name, ticker in symbols.items():
     prev_ema9 = df["EMA9"].iloc[-2]
 
     buy_signal = sell_signal = False
-    trend_mark = ""
 
     # =====================
     # Trend classification + Buy/Sell rules
@@ -144,9 +142,19 @@ for name, ticker in symbols.items():
     # =====================
     # Check direction change
     # =====================
-    prev_trend = last_signals.get(name, {}).get("trend")
+    prev_data = last_signals.get(name, {})
+    prev_trend = prev_data.get("trend")
+    prev_signal = prev_data.get("last_signal")
     changed_mark = "📊 " if prev_trend and prev_trend != trend else ""
-    
+
+    # =====================
+    # Prevent repeated BUY/SELL if unchanged
+    # =====================
+    if buy_signal and prev_signal == "BUY":
+        buy_signal = False
+    if sell_signal and prev_signal == "SELL":
+        sell_signal = False
+
     # =====================
     # Prepare signal text
     # =====================
@@ -172,10 +180,12 @@ for name, ticker in symbols.items():
         section_down.append(signal_text)
 
     # =====================
-    # Save last signal
+    # Update last signals
     # =====================
-    new_signals[name] = {"last_signal": "BUY" if buy_signal else "SELL" if sell_signal else None,
-                         "trend": trend}
+    new_signals[name] = {
+        "last_signal": "BUY" if buy_signal else "SELL" if sell_signal else prev_signal,
+        "trend": trend
+    }
 
 # =====================
 # Compile final message
@@ -200,7 +210,7 @@ if data_failures:
 # Save & Notify
 # =====================
 with open(SIGNALS_FILE, "w") as f:
-    json.dump(new_signals, f, indent=2)
+    json.dump(new_signals, f, indent=2, ensure_ascii=False)
 
 if alerts:
     send_telegram("\n".join(alerts))
