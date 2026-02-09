@@ -82,7 +82,7 @@ def rsi(series, period=14):
 # =====================
 EMA_PERIOD = 60
 LOOKBACK = 50
-THRESHOLD = 0.8  # 80% من الشموع
+THRESHOLD = 0.85  # 85% من الشموع
 
 # =====================
 # Main Logic
@@ -120,7 +120,7 @@ for name, ticker in symbols.items():
         prev_ema9 = df["EMA9"].iloc[-2]
 
         buy_signal = last_ema4 > last_ema9 and prev_ema4 <= prev_ema9 and last_rsi < 60
-        sell_signal = (last_ema4 < last_ema9 and prev_ema4 >= prev_ema9) or last_rsi > 83
+        sell_signal = (last_ema4 < last_ema9 and prev_ema4 >= prev_ema9) or last_rsi > 88
 
     elif bearish_ratio >= THRESHOLD:
         trend = "❌ هابط"
