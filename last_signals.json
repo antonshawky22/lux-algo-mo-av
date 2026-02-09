@@ -1,142 +1,142 @@
 {
   "ELEC": {
     "last_signal": "BUY",
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "OFH": {
     "last_signal": null,
-    "trend": "\u274c \u0647\u0627\u0628\u0637"
+    "trend": "❌ هابط"
   },
   "OLFI": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "EMFD": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "ETEL": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "EAST": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "EFIH": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "ABUK": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "OIH": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "SWDY": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "ISPH": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "ATQA": {
     "last_signal": null,
-    "trend": "\u274c \u0647\u0627\u0628\u0637"
+    "trend": "❌ هابط"
   },
   "MTIE": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "HRHO": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "ORWE": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "JUFO": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "DSCW": {
     "last_signal": null,
-    "trend": "\u274c \u0647\u0627\u0628\u0637"
+    "trend": "❌ هابط"
   },
   "SUGR": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "ELSH": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "RMDA": {
     "last_signal": null,
-    "trend": "\u274c \u0647\u0627\u0628\u0637"
+    "trend": "❌ هابط"
   },
   "RAYA": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "EEII": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "MPCO": {
     "last_signal": null,
-    "trend": "\u274c \u0647\u0627\u0628\u0637"
+    "trend": "❌ هابط"
   },
   "GBCO": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "TMGH": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "ORHD": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "AMOC": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "FWRY": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "COMI": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "ADIB": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "PHDC": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "EGTS": {
     "last_signal": null,
-    "trend": "\u274c \u0647\u0627\u0628\u0637"
+    "trend": "❌ هابط"
   },
   "MCQE": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   },
   "SKPC": {
     "last_signal": null,
-    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+    "trend": "🔛 عرضي"
   },
   "EGAL": {
     "last_signal": null,
-    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+    "trend": "↗️ صاعد"
   }
 }
