@@ -1,5 +1,142 @@
 {
   "ELEC": {
-    "last_signal": "BUY"
+    "last_signal": "BUY",
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "OFH": {
+    "last_signal": null,
+    "trend": "\u274c \u0647\u0627\u0628\u0637"
+  },
+  "OLFI": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "EMFD": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "ETEL": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "EAST": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "EFIH": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "ABUK": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "OIH": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "SWDY": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "ISPH": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "ATQA": {
+    "last_signal": null,
+    "trend": "\u274c \u0647\u0627\u0628\u0637"
+  },
+  "MTIE": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "HRHO": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "ORWE": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "JUFO": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "DSCW": {
+    "last_signal": null,
+    "trend": "\u274c \u0647\u0627\u0628\u0637"
+  },
+  "SUGR": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "ELSH": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "RMDA": {
+    "last_signal": null,
+    "trend": "\u274c \u0647\u0627\u0628\u0637"
+  },
+  "RAYA": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "EEII": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "MPCO": {
+    "last_signal": null,
+    "trend": "\u274c \u0647\u0627\u0628\u0637"
+  },
+  "GBCO": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "TMGH": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "ORHD": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "AMOC": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "FWRY": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "COMI": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "ADIB": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "PHDC": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "EGTS": {
+    "last_signal": null,
+    "trend": "\u274c \u0647\u0627\u0628\u0637"
+  },
+  "MCQE": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
+  },
+  "SKPC": {
+    "last_signal": null,
+    "trend": "\ud83d\udd1b \u0639\u0631\u0636\u064a"
+  },
+  "EGAL": {
+    "last_signal": null,
+    "trend": "\u2197\ufe0f \u0635\u0627\u0639\u062f"
   }
 }
