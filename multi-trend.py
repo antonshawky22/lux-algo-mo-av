@@ -151,7 +151,7 @@ for name, ticker in symbols.items():
     prev_signal = prev_data.get("last_signal")
     prev_forced = prev_data.get("last_forced_sell", "")
 
-    changed_mark = "📢" if prev_trend and prev_trend != trend else ""
+    changed_mark = "🚧" if prev_trend and prev_trend != trend else ""
 
     # =====================
     # Forced Sell Rule (cross EMA25)
@@ -178,17 +178,17 @@ for name, ticker in symbols.items():
     signal_text = f"{changed_mark}{name} | {last_close:.2f} | {last_candle_date}"
     if trend == "↗️صاعد":
         if buy_signal:
-            signal_text += f"|{trend}|🟢BUY"
+            signal_text += f"|🟢BUY"
         elif sell_signal:
-            signal_text += f"|{trend}|🔴SELL"
+            signal_text += f"|🔴SELL"
         else:
             signal_text += f" | {trend}"
         section_up.append(signal_text)
     elif trend == "🔛عرضي":
         if buy_signal:
-            signal_text += f"|{trend}|🟢BUY"
+            signal_text += f"|🟢BUY"
         elif sell_signal:
-            signal_text += f"|{trend}|🔴SELL"
+            signal_text += f"|🔴SELL"
         else:
             signal_text += f"|{trend}"
         section_side.append(signal_text)
@@ -221,7 +221,7 @@ if section_side:
     alerts.append("\n🔛عرضي:")
     alerts.extend(["- " + s for s in section_side])
 if section_down:
-    alerts.append("\n❌ هابط:")
+    alerts.append("\n🔻🔻 هابط:")
     alerts.extend(["- " + s for s in section_down])
 
 if data_failures:
