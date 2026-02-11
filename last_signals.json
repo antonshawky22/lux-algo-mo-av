@@ -5,7 +5,7 @@
     "last_forced_sell": ""
   },
   "OLFI": {
-    "last_signal": "SELL",
+    "last_signal": "BUY",
     "trend": "🔛عرضي",
     "last_forced_sell": "FORCED_SELL"
   },
@@ -30,8 +30,8 @@
     "last_forced_sell": ""
   },
   "ABUK": {
-    "last_signal": null,
-    "trend": "🔛عرضي",
+    "last_signal": "SELL",
+    "trend": "↗️صاعد",
     "last_forced_sell": ""
   },
   "OIH": {
@@ -101,7 +101,7 @@
   },
   "RAYA": {
     "last_signal": null,
-    "trend": "🔛عرضي",
+    "trend": "↗️صاعد",
     "last_forced_sell": ""
   },
   "EEII": {
@@ -150,7 +150,7 @@
     "last_forced_sell": ""
   },
   "PHDC": {
-    "last_signal": null,
+    "last_signal": "BUY",
     "trend": "↗️صاعد",
     "last_forced_sell": ""
   },
@@ -170,8 +170,8 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "EGAL": {
-    "last_signal": "BUY",
+    "last_signal": "SELL",
     "trend": "↗️صاعد",
-    "last_forced_sell": ""
+    "last_forced_sell": "FORCED_SELL"
   }
 }
