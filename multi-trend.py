@@ -184,9 +184,9 @@ for name, ticker in symbols.items():
     signal_text = f"{changed_mark}{name} | {last_close:.2f} | {last_candle_date}"
     if trend == "↗️صاعد":
         if buy_signal:
-            signal_text += f"|🟢BUY"
+            signal_text += f"↗️|🟢BUY"
         elif sell_signal:
-            signal_text += f"|🔴SELL"
+            signal_text += f"↙️|🔴SELL"
         else:
             signal_text += f" | {trend}"
         section_up.append(signal_text)
