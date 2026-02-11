@@ -178,32 +178,26 @@ for name, ticker in symbols.items():
     if sell_signal and prev_signal == "SELL":
         sell_signal = False
 
-    # =====================
-    # Prepare signal text
-    # =====================
-    signal_text = f"{changed_mark}{name} | {last_close:.2f} | {last_candle_date}"
-    if trend == "↗️صاعد":
-        if buy_signal:
-            signal_text += f"↗️|🟢BUY"
-        elif sell_signal:
-            signal_text += f"↙️|🔴SELL"
-        else:
-            signal_text += f" | {trend}"
-        section_up.append(signal_text)
-    elif trend == "🔛عرضي":
-        if buy_signal:
-            signal_text += f"|🟢BUY"
-        elif sell_signal:
-            signal_text += f"|🔴SELL"
-        else:
-            signal_text += f"|{trend}"
-        section_side.append(signal_text)
-    else:
-        if sell_signal:
-            signal_text += f"|{trend}|🔴SELL"
-        else:
-            signal_text += f"|{trend}"
-        section_down.append(signal_text)
+    # =====================# =====================
+# Prepare signal text
+# =====================
+
+# استخراج الايموجي فقط من التريند
+trend_icon = trend.split()[0]  # ياخد أول جزء بس (الإيموجي)
+
+signal_text = f"{changed_mark}{trend_icon} {name} | {last_close:.2f} | {last_candle_date}"
+
+if buy_signal:
+    signal_text += "|🟢BUY"
+elif sell_signal:
+    signal_text += "|🔴SELL"
+
+if trend == "↗️صاعد":
+    section_up.append(signal_text)
+elif trend == "🔛عرضي":
+    section_side.append(signal_text)
+else:
+    section_down.append(signal_text)
 
     # =====================
     # Update last signals
