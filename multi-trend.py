@@ -152,7 +152,7 @@ for name, ticker in symbols.items():
             target_section = section_side
 
         # شراء وبيع مبسط للعرضي
-        if last_close > last_ema9 and last_rsi > df["RSI14"].iloc[-2]:
+        if last_rsi < 45 and last_rsi > df["RSI14"].iloc[-2]:
             buy_signal = True
         elif last_close < last_ema9 or last_rsi < df["RSI14"].iloc[-2]:
             sell_signal = True
