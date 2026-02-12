@@ -15,7 +15,7 @@
     "last_forced_sell": ""
   },
   "ETEL": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": ""
   },
@@ -25,12 +25,12 @@
     "last_forced_sell": ""
   },
   "EFIH": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": ""
   },
   "ABUK": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": ""
   },
@@ -95,14 +95,14 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "RMDA": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "🔻",
-    "last_forced_sell": ""
+    "last_forced_sell": "FORCED_SELL"
   },
   "RAYA": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
-    "last_forced_sell": ""
+    "last_forced_sell": "FORCED_SELL"
   },
   "EEII": {
     "last_signal": "SELL",
@@ -110,19 +110,19 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "MPCO": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "🔻",
-    "last_forced_sell": ""
+    "last_forced_sell": "FORCED_SELL"
   },
   "GBCO": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
-    "last_forced_sell": ""
+    "last_forced_sell": "FORCED_SELL"
   },
   "TMGH": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
-    "last_forced_sell": ""
+    "last_forced_sell": "FORCED_SELL"
   },
   "ORHD": {
     "last_signal": "BUY",
@@ -130,12 +130,12 @@
     "last_forced_sell": ""
   },
   "AMOC": {
-    "last_signal": null,
+    "last_signal": "BUY",
     "trend": "↗️",
     "last_forced_sell": ""
   },
   "FWRY": {
-    "last_signal": null,
+    "last_signal": "BUY",
     "trend": "↗️",
     "last_forced_sell": ""
   },
@@ -150,7 +150,7 @@
     "last_forced_sell": ""
   },
   "PHDC": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": ""
   },
@@ -160,7 +160,7 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "MCQE": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": ""
   },
