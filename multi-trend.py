@@ -134,7 +134,7 @@ for name, ticker in symbols.items():
     # =====================
     if bullish_ratio >= THRESHOLD:
         trend = "↗️"
-        if last_rsi < 60:
+        if last_rsi < 50:
             buy_signal = True
         if (last_ema4 < last_ema9 and prev_ema4 >= prev_ema9) or last_rsi > 88:
             sell_signal = True
@@ -143,7 +143,7 @@ for name, ticker in symbols.items():
         buy_signal = sell_signal = False
     else:
         trend = "🔛"
-        if last_rsi < 32 and last_close < last_ema4:
+        if last_rsi < 30 and last_close < last_ema4:
             buy_signal = True
         if last_rsi > 55 and last_close < last_ema9:
             sell_signal = True
