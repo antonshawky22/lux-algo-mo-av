@@ -1,6 +1,6 @@
 {
   "OFH": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -10,7 +10,7 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "EMFD": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -20,7 +20,7 @@
     "last_forced_sell": ""
   },
   "EAST": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -45,7 +45,7 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "ISPH": {
-    "last_signal": null,
+    "last_signal": "BUY",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -55,7 +55,7 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "MTIE": {
-    "last_signal": null,
+    "last_signal": "BUY",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -65,17 +65,17 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "HRHO": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
   "ORWE": {
-    "last_signal": null,
+    "last_signal": "BUY",
     "trend": "🔛",
     "last_forced_sell": ""
   },
   "JUFO": {
-    "last_signal": null,
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -125,7 +125,7 @@
     "last_forced_sell": ""
   },
   "ORHD": {
-    "last_signal": null,
+    "last_signal": "BUY",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -170,7 +170,7 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "EGAL": {
-    "last_signal": "SELL",
+    "last_signal": "BUY",
     "trend": "↗️",
     "last_forced_sell": "FORCED_SELL"
   }
