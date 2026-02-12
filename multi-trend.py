@@ -1,4 +1,4 @@
-print("EGX ALERTS - Phase 3: Final Version with Forced Sell")
+print("EGX ALERTS - Phase 3: Final Version with Forced Sell and Updated Sideways")
 
 import yfinance as yf
 import requests
@@ -92,6 +92,7 @@ EMA_FORCED_SELL = 25  # متوسط 25 للشروط القسرية
 # =====================
 section_up = []
 section_side = []
+section_side_weak = []  # جديد: الأسهم العرضية الضعيفة
 section_down = []
 
 # =====================
@@ -142,9 +143,22 @@ for name, ticker in symbols.items():
         trend = "🔻"
         buy_signal = sell_signal = False
     else:
+        # =====================
+        # Sideways logic (Updated)
+        # =====================
         trend = "🔛"
-        if last_rsi < 30 and last_close < last_ema4:
+        bullish_50 = (recent_closes > recent_ema).sum() / LOOKBACK
+        # ضعيف إذا أقل من 50٪ فوق EMA60
+        if bullish_50 < 0.5:
+            changed_mark = "⚠️"
+            target_section = section_side_weak
+        else:
+            changed_mark = ""
+            target_section = section_side
+        # Buy condition
+        if last_rsi < 30 and last_close > last_ema9 and df["RSI14"].iloc[-2] < last_rsi:
             buy_signal = True
+        # Sell condition (stop loss)
         if last_rsi > 55 and last_close < last_ema9:
             sell_signal = True
 
@@ -155,7 +169,8 @@ for name, ticker in symbols.items():
     prev_signal = prev_data.get("last_signal")
     prev_forced = prev_data.get("last_forced_sell", "")
 
-    changed_mark = "🚧" if prev_data.get("trend") and prev_data.get("trend") != trend else ""
+    if trend != "🔛":
+        changed_mark = "🚧" if prev_data.get("trend") and prev_data.get("trend") != trend else ""
 
     # =====================
     # Forced Sell Rule (cross EMA25)
@@ -188,7 +203,7 @@ for name, ticker in symbols.items():
     if trend == "↗️":
         section_up.append(signal_text)
     elif trend == "🔛":
-        section_side.append(signal_text)
+        target_section.append(signal_text)
     else:
         section_down.append(signal_text)
 
@@ -213,6 +228,9 @@ if section_up:
 if section_side:
     alerts.append("\n🔛 عرضي:")
     alerts.extend(["- " + s for s in section_side])
+if section_side_weak:
+    alerts.append("\n🔛 عرضي ضعيف:")
+    alerts.extend(["- " + s for s in section_side_weak])
 if section_down:
     alerts.append("\n🔻 هابط:")
     alerts.extend(["- " + s for s in section_down])
