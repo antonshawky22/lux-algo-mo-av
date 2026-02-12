@@ -165,6 +165,14 @@ if last_close > last_ema9 and last_rsi > df["RSI14"].iloc[-2]:
 if last_close < last_ema9 or last_rsi < df["RSI14"].iloc[-2]:
     sell_signal = True
     buy_signal = False
+    # تجهيز نص الاشارة وإضافة للـ Section
+    signal_text = f"{changed_mark} {trend} {name} | {last_close:.2f} | {last_candle_date}"
+    if buy_signal:
+        signal_text += "|🟢BUY"
+    elif sell_signal:
+        signal_text += "|🔴SELL"
+
+    target_section.append(signal_text)
     # =====================
     # Check direction change
     # =====================
