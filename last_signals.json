@@ -170,7 +170,7 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "EGAL": {
-    "last_signal": "BUY",
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": "FORCED_SELL"
   }
