@@ -114,7 +114,7 @@ for name, ticker in symbols.items():
     df["EMA25"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
 
     recent_closes = df["Close"].iloc[-LOOKBACK:]
-    recent_ema = df["EMA60"].iloc[-LOOKBACK:]
+    recent_ema = df["EMA45"].iloc[-LOOKBACK:]
 
     bullish_ratio = (recent_closes > recent_ema).sum() / LOOKBACK
     bearish_ratio = (recent_closes < recent_ema).sum() / LOOKBACK
