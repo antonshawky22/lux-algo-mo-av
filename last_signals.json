@@ -36,7 +36,7 @@
   },
   "OIH": {
     "last_signal": "SELL",
-    "trend": "🔛",
+    "trend": "↗️",
     "last_forced_sell": ""
   },
   "SWDY": {
@@ -55,12 +55,12 @@
     "last_forced_sell": "FORCED_SELL"
   },
   "MTIE": {
-    "last_signal": "BUY",
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
   "ELEC": {
-    "last_signal": "SELL",
+    "last_signal": "BUY",
     "trend": "🔛",
     "last_forced_sell": "FORCED_SELL"
   },
@@ -70,7 +70,7 @@
     "last_forced_sell": ""
   },
   "ORWE": {
-    "last_signal": "BUY",
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -115,7 +115,7 @@
     "last_forced_sell": ""
   },
   "GBCO": {
-    "last_signal": "",
+    "last_signal": "BUY",
     "trend": "↗️",
     "last_forced_sell": ""
   },
@@ -125,7 +125,7 @@
     "last_forced_sell": ""
   },
   "ORHD": {
-    "last_signal": "BUY",
+    "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": ""
   },
@@ -145,12 +145,12 @@
     "last_forced_sell": ""
   },
   "ADIB": {
-    "last_signal": "SELL",
+    "last_signal": "BUY",
     "trend": "↗️",
     "last_forced_sell": ""
   },
   "PHDC": {
-    "last_signal": "",
+    "last_signal": "BUY",
     "trend": "↗️",
     "last_forced_sell": ""
   },
