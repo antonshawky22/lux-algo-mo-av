@@ -82,9 +82,9 @@ def rsi(series, period=14):
 # =====================
 # Parameters
 # =====================
-EMA_PERIOD = 45
-LOOKBACK = 50
-THRESHOLD = 0.85  # 85%
+EMA_PERIOD = 60
+LOOKBACK = 20
+THRESHOLD = 0.60  # 60%
 EMA_FORCED_SELL = 25  # متوسط 25 للشروط القسرية
 
 # =====================
@@ -107,14 +107,14 @@ for name, ticker in symbols.items():
     last_candle_date = df.index[-1].date()
 
     # حساب المتوسطات والمؤشرات
-    df["EMA45"] = df["Close"].ewm(span=EMA_PERIOD, adjust=False).mean()
+    df["EMA60"] = df["Close"].ewm(span=EMA_PERIOD, adjust=False).mean()
     df["RSI14"] = rsi(df["Close"], 14)
     df["EMA4"] = df["Close"].ewm(span=4, adjust=False).mean()
     df["EMA9"] = df["Close"].ewm(span=9, adjust=False).mean()
     df["EMA25"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
 
     recent_closes = df["Close"].iloc[-LOOKBACK:]
-    recent_ema = df["EMA45"].iloc[-LOOKBACK:]
+    recent_ema = df["EMA60"].iloc[-LOOKBACK:]
 
     bullish_ratio = (recent_closes > recent_ema).sum() / LOOKBACK
     bearish_ratio = (recent_closes < recent_ema).sum() / LOOKBACK
