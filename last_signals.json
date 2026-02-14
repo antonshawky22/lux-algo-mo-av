@@ -32,7 +32,7 @@
     "trend": "↗️"
   },
   "SWDY": {
-    "last_signal": "",
+    "last_signal": "SELL",
     "trend": "↗️"
   },
   "ISPH": {
@@ -40,7 +40,7 @@
     "trend": "↗️"
   },
   "ATQA": {
-    "last_signal": "",
+    "last_signal": "SELL",
     "trend": "🔻"
   },
   "MTIE": {
@@ -48,7 +48,7 @@
     "trend": "↗️"
   },
   "ELEC": {
-    "last_signal": "",
+    "last_signal": "SELL",
     "trend": "🔻"
   },
   "HRHO": {
@@ -72,7 +72,7 @@
     "trend": "🔛"
   },
   "ELSH": {
-    "last_signal": "",
+    "last_signal": "SELL",
     "trend": "🔻"
   },
   "RMDA": {
@@ -84,7 +84,7 @@
     "trend": "↗️"
   },
   "EEII": {
-    "last_signal": "",
+    "last_signal": "SELL",
     "trend": "🔻"
   },
   "MPCO": {
@@ -132,7 +132,7 @@
     "trend": "↗️"
   },
   "SKPC": {
-    "last_signal": "",
+    "last_signal": "SELL",
     "trend": "🔻"
   },
   "EGAL": {
