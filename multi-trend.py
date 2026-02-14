@@ -93,6 +93,11 @@ section_side_weak = []
 section_down = []
 
 # =====================
+# Track sideways duplicates
+# =====================
+side_stock_added = set()
+
+# =====================
 # Main Logic
 # =====================
 for name, ticker in symbols.items():
@@ -159,14 +164,12 @@ for name, ticker in symbols.items():
     # Strategy by Trend
     # =====================
     if trend == "↗️":
-        # EMA4/EMA9 crossover strategy
         if prev_ema4 <= prev_ema9 and last_ema4 > last_ema9:
             buy_signal = True
         elif prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
             sell_signal = True
 
     elif trend == "🔛":
-        # Sideways: peaks/valleys ±5% with no duplicates
         high_lookback = df["Close"].iloc[-EMA_PERIOD:]
         low_lookback = df["Close"].iloc[-EMA_PERIOD:]
         high_threshold = high_lookback.max() * 0.95
@@ -174,19 +177,16 @@ for name, ticker in symbols.items():
         near_peak = last_close >= high_threshold
         near_valley = last_close <= low_threshold
 
-        if near_peak:
-            percent_from_peak = (last_close / high_lookback.max() - 1) * 100
-            entry_text = f"{trend_changed_mark}🔴 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_peak:.2f}%"
-            if entry_text not in section_side:  # منع التكرار
-                section_side.append(entry_text)
-        elif near_valley:
-            percent_from_valley = (last_close / low_lookback.min() - 1) * 100
-            entry_text = f"{trend_changed_mark}🟢 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_valley:.2f}%"
-            if entry_text not in section_side:  # منع التكرار
-                section_side.append(entry_text)
+        if near_peak and name not in side_stock_added:
+            percent_from_peak = (high_lookback.max() - last_close) / high_lookback.max() * 100
+            section_side.append(f"{trend_changed_mark}🔴 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_peak:.2f}%")
+            side_stock_added.add(name)
+        elif near_valley and name not in side_stock_added:
+            percent_from_valley = (last_close - low_lookback.min()) / low_lookback.min() * 100
+            section_side.append(f"{trend_changed_mark}🟢 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_valley:.2f}%")
+            side_stock_added.add(name)
 
     elif trend == "🔻":
-        # Downtrend: show only
         section_down.append(f"{trend_changed_mark}{name} | {last_close:.2f} | {last_candle_date}")
 
     # =====================
