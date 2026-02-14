@@ -1,107 +1,142 @@
 {
   "OFH": {
+    "last_signal": "SELL",
     "trend": "🔛"
   },
   "OLFI": {
+    "last_signal": "BUY",
     "trend": "🔛"
   },
   "EMFD": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "ETEL": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "EAST": {
+    "last_signal": "",
     "trend": "🔛"
   },
   "EFIH": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "ABUK": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "OIH": {
+    "last_signal": "SELL",
     "trend": "↗️"
   },
   "SWDY": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "ISPH": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "ATQA": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "MTIE": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "ELEC": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "HRHO": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "ORWE": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "JUFO": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "DSCW": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "SUGR": {
+    "last_signal": "BUY",
     "trend": "🔛"
   },
   "ELSH": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "RMDA": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "RAYA": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "EEII": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "MPCO": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "GBCO": {
+    "last_signal": "SELL",
     "trend": "↗️"
   },
   "TMGH": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "ORHD": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "AMOC": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "FWRY": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "COMI": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "ADIB": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "PHDC": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "EGTS": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "MCQE": {
+    "last_signal": "",
     "trend": "↗️"
   },
   "SKPC": {
+    "last_signal": "",
     "trend": "🔻"
   },
   "EGAL": {
+    "last_signal": "",
     "trend": "↗️"
   }
 }
