@@ -60,7 +60,7 @@
     "last_forced_sell": ""
   },
   "ELEC": {
-    "last_signal": "BUY",
+    "last_signal": "SELL",
     "trend": "🔻",
     "last_forced_sell": "FORCED_SELL"
   },
@@ -145,7 +145,7 @@
     "last_forced_sell": ""
   },
   "ADIB": {
-    "last_signal": "BUY",
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": ""
   },
