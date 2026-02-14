@@ -1,4 +1,4 @@
-print("EGX ALERTS - Phase 4: Complete Version with Full Symbols & Signals")
+print("EGX ALERTS - Phase 6: Compact Directional Alerts")
 
 import yfinance as yf
 import requests
@@ -38,6 +38,9 @@ symbols = {
     "EGAL": "EGAL.CA"
 }
 
+# =====================
+# Load last signals
+# =====================
 SIGNALS_FILE = "last_signals.json"
 try:
     with open(SIGNALS_FILE, "r") as f:
@@ -64,48 +67,37 @@ def fetch_data(ticker):
         return None
 
 # =====================
-# RSI مطابق TradingView
-# =====================
-def rsi(series, period=14):
-    delta = series.diff()
-    gain = delta.clip(lower=0)
-    loss = -delta.clip(upper=0)
-    avg_gain = gain.ewm(alpha=1/period, adjust=False).mean()
-    avg_loss = loss.ewm(alpha=1/period, adjust=False).mean()
-    rs = avg_gain / avg_loss
-    return 100 - (100 / (1 + rs))
-
-# =====================
 # Parameters
 # =====================
 EMA_PERIOD = 60
 LOOKBACK = 20
 THRESHOLD = 0.60
-NEAR_PERCENT = 5
+EMA_FORCED_SELL = 25
 
 # =====================
 # Containers
 # =====================
-section_up = []
-section_side = []
-section_side_weak = []
-section_down = []
-section_peaks = []
-section_valleys = []
+section_up = []            # صاعد ↗️
+section_side = []          # عرضي 🔛
+section_side_peaks = []    # قرب القمم
+section_side_valleys = []  # قرب القيعان
+section_down = []          # هابط 🔻
 
 # =====================
 # Main Logic
 # =====================
 for name, ticker in symbols.items():
     df = fetch_data(ticker)
-    if df is None or len(df) < EMA_PERIOD:
+    if df is None or len(df) < LOOKBACK:
         data_failures.append(name)
         continue
 
     last_candle_date = df.index[-1].date()
 
     df["EMA60"] = df["Close"].ewm(span=EMA_PERIOD, adjust=False).mean()
-    df["RSI14"] = rsi(df["Close"], 14)
+    df["EMA4"] = df["Close"].ewm(span=4, adjust=False).mean()
+    df["EMA9"] = df["Close"].ewm(span=9, adjust=False).mean()
+    df["EMA25"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
 
     recent_closes = df["Close"].iloc[-LOOKBACK:]
     recent_ema = df["EMA60"].iloc[-LOOKBACK:]
@@ -115,88 +107,102 @@ for name, ticker in symbols.items():
 
     last_close = df["Close"].iloc[-1]
     prev_close = df["Close"].iloc[-2]
+    last_ema4 = df["EMA4"].iloc[-1]
+    last_ema9 = df["EMA9"].iloc[-1]
+    prev_ema4 = df["EMA4"].iloc[-2]
+    prev_ema9 = df["EMA9"].iloc[-2]
+
+    buy_signal = sell_signal = False
+    changed_mark = ""
 
     # =====================
     # Trend classification
     # =====================
     if bullish_ratio >= THRESHOLD:
         trend = "↗️"
+        # EMA4/EMA9 simple strategy
+        if prev_ema4 <= prev_ema9 and last_ema4 > last_ema9:
+            buy_signal = True
+        elif prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
+            sell_signal = True
+
     elif bearish_ratio >= THRESHOLD:
         trend = "🔻"
+        # no buy/sell for downtrend
+
     else:
         trend = "🔛"
+        # Peaks and valleys 5%
+        high_lookback = df["Close"].iloc[-EMA_PERIOD:]
+        low_lookback = df["Close"].iloc[-EMA_PERIOD:]
+        high_threshold = high_lookback.max() * 0.95
+        low_threshold = low_lookback.min() * 1.05
+        near_peak = last_close >= high_threshold
+        near_valley = last_close <= low_threshold
+
+        if near_peak:
+            sell_signal = True
+            section_side_peaks.append(f"{name} | {last_close:.2f} | {((last_close/high_lookback.max())*100):.2f}%")
+        elif near_valley:
+            buy_signal = True
+            section_side_valleys.append(f"{name} | {last_close:.2f} | {((last_close/low_lookback.min())*100):.2f}%")
 
     # =====================
-    # 🔥 NEW PEAK / VALLEY LOGIC
+    # Track direction change
     # =====================
-    recent_high = df["Close"].iloc[-EMA_PERIOD:].max()
-    recent_low = df["Close"].iloc[-EMA_PERIOD:].min()
-
-    distance_from_high = ((recent_high - last_close) / recent_high) * 100
-    distance_from_low = ((last_close - recent_low) / recent_low) * 100
-
-    distance_from_high = round(distance_from_high, 2)
-    distance_from_low = round(distance_from_low, 2)
-
-    peak_signal = valley_signal = False
-
-    if distance_from_high <= NEAR_PERCENT:
-        peak_signal = True
-        section_peaks.append(
-            f"{name} | {last_close:.2f} | {last_candle_date} | 🔴SELL {distance_from_high}%"
-        )
-
-    elif distance_from_low <= NEAR_PERCENT:
-        valley_signal = True
-        section_valleys.append(
-            f"{name} | {last_close:.2f} | {last_candle_date} | 🟢BUY {distance_from_low}%"
-        )
+    prev_data = last_signals.get(name, {})
+    prev_trend = prev_data.get("trend", "")
+    if trend != prev_trend:
+        changed_mark = "🚧"
 
     # =====================
-    # Trend Sections
+    # Append to sections
     # =====================
-    base_text = f"{trend} {name} | {last_close:.2f} | {last_candle_date}"
-
-    if trend == "↗️":
-        section_up.append(base_text)
+    if trend == "↗️" and (buy_signal or sell_signal):
+        signal_text = f"{changed_mark}{name} | {last_close:.2f}"
+        signal_text += "|🟢BUY" if buy_signal else "|🔴SELL"
+        section_up.append(signal_text)
     elif trend == "🔛":
-        section_side.append(base_text)
-    else:
-        section_down.append(base_text)
+        if sell_signal and near_peak:
+            section_side.append(f"🔴{name} | {last_close:.2f} | {((last_close/high_lookback.max())*100):.2f}%")
+        elif buy_signal and near_valley:
+            section_side.append(f"🟢{name} | {last_close:.2f} | {((last_close/low_lookback.min())*100):.2f}%")
+    elif trend == "🔻":
+        section_down.append(f"{name} | {last_close:.2f}")
 
+    # =====================
+    # Update last signals
+    # =====================
     new_signals[name] = {
+        "last_signal": "BUY" if buy_signal else "SELL" if sell_signal else prev_data.get("last_signal",""),
         "trend": trend
     }
 
 # =====================
-# Compile message
+# Compile compact message
 # =====================
-alerts = ["🚦 EGX Alerts:\n"]
+alerts = ["🚦 EGX Alerts (Compact):\n"]
 
 if section_up:
-    alerts.append("↗️ صاعد:")
+    alerts.append("↗️ صاعد (شراء/بيع):")
     alerts.extend(["- " + s for s in section_up])
-
 if section_side:
-    alerts.append("\n🔛 عرضي:")
+    alerts.append("\n🔛 عرضي (قمم/قيعان):")
     alerts.extend(["- " + s for s in section_side])
-
 if section_down:
     alerts.append("\n🔻 هابط:")
     alerts.extend(["- " + s for s in section_down])
 
-if section_peaks:
-    alerts.append("\n⛰️ قرب القمم:")
-    alerts.extend(["- " + s for s in section_peaks])
-
-if section_valleys:
-    alerts.append("\n🏔️ قرب القيعان:")
-    alerts.extend(["- " + s for s in section_valleys])
-
 if data_failures:
     alerts.append("\n⚠️ Failed to fetch data:\n- " + "\n- ".join(data_failures))
 
+# =====================
+# Save & Notify
+# =====================
 with open(SIGNALS_FILE, "w") as f:
     json.dump(new_signals, f, indent=2, ensure_ascii=False)
 
-send_telegram("\n".join(alerts))
+if alerts:
+    send_telegram("\n".join(alerts))
+else:
+    send_telegram(f"ℹ️ No new signals\nLast candle: {last_candle_date}")
