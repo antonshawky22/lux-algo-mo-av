@@ -120,33 +120,40 @@ for name, ticker in symbols.items():
 
     last_close = df["Close"].iloc[-1]
     prev_close = df["Close"].iloc[-2]
-    last_rsi = df["RSI14"].iloc[-1]
-    prev_rsi = df["RSI14"].iloc[-2]
     last_ema4 = df["EMA4"].iloc[-1]
     prev_ema4 = df["EMA4"].iloc[-2]
     last_ema9 = df["EMA9"].iloc[-1]
     prev_ema9 = df["EMA9"].iloc[-2]
-    last_volume = df["Volume"].iloc[-1]
-    prev_volume = df["Volume"].iloc[-2]
 
     buy_signal = sell_signal = False
     changed_mark = ""
     target_section = None
 
+    prev_data = last_signals.get(name, {})
+    prev_signal = prev_data.get("last_signal", "")
+    prev_trend = prev_data.get("trend", "")
+
     # =====================
     # Determine Trend
     # =====================
     if bullish_ratio >= THRESHOLD:
-        trend = "↗️"  # Uptrend
+        trend = "↗️"
     elif bearish_ratio >= THRESHOLD:
-        trend = "🔻"  # Downtrend
+        trend = "🔻"
     else:
-        trend = "🔛"  # Sideways
+        trend = "🔛"
         bullish_50 = (recent_closes > recent_ema60).sum() / LOOKBACK
         if bullish_50 < 0.5:
             target_section = section_side_weak
         else:
             target_section = section_side
+
+    # =====================
+    # Check trend change
+    # =====================
+    trend_changed_mark = ""
+    if prev_trend and prev_trend != trend:
+        trend_changed_mark = "🚧 "
 
     # =====================
     # Strategy by Trend
@@ -168,13 +175,15 @@ for name, ticker in symbols.items():
         near_valley = last_close <= low_threshold
 
         if near_peak:
-            section_side.append(f"🔴 {name} | {last_close:.2f} | {last_candle_date} | {last_close/high_lookback.max()*100:.2f}%")
+            percent_from_peak = (last_close / high_lookback.max() - 1) * 100
+            section_side.append(f"{trend_changed_mark}🔴 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_peak:.2f}%")
         elif near_valley:
-            section_side.append(f"🟢 {name} | {last_close:.2f} | {last_candle_date} | {last_close/low_lookback.min()*100:.2f}%")
+            percent_from_valley = (last_close / low_lookback.min() - 1) * 100
+            section_side.append(f"{trend_changed_mark}🟢 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_valley:.2f}%")
 
-    # Downtrend: show only
     elif trend == "🔻":
-        section_down.append(f"{name} | {last_close:.2f} | {last_candle_date}")
+        # Downtrend: show only
+        section_down.append(f"{trend_changed_mark}{name} | {last_close:.2f} | {last_candle_date}")
 
     # =====================
     # Forced Sell
@@ -190,8 +199,6 @@ for name, ticker in symbols.items():
     # =====================
     # Prevent repeated BUY/SELL
     # =====================
-    prev_data = last_signals.get(name, {})
-    prev_signal = prev_data.get("last_signal", "")
     if buy_signal and prev_signal == "BUY":
         buy_signal = False
     if sell_signal and prev_signal == "SELL":
@@ -202,7 +209,7 @@ for name, ticker in symbols.items():
     # =====================
     if trend == "↗️" and (buy_signal or sell_signal):
         mark = "🟢" if buy_signal else "🔴"
-        section_up.append(f"{mark} {name} | {last_close:.2f} | {last_candle_date}")
+        section_up.append(f"{trend_changed_mark}{mark} {name} | {last_close:.2f} | {last_candle_date}")
 
     # =====================
     # Update last signals
