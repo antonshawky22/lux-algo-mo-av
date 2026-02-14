@@ -166,7 +166,7 @@ for name, ticker in symbols.items():
             sell_signal = True
 
     elif trend == "🔛":
-        # Sideways: peaks/valleys ±5%
+        # Sideways: peaks/valleys ±5% with no duplicates
         high_lookback = df["Close"].iloc[-EMA_PERIOD:]
         low_lookback = df["Close"].iloc[-EMA_PERIOD:]
         high_threshold = high_lookback.max() * 0.95
@@ -176,10 +176,14 @@ for name, ticker in symbols.items():
 
         if near_peak:
             percent_from_peak = (last_close / high_lookback.max() - 1) * 100
-            section_side.append(f"{trend_changed_mark}🔴 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_peak:.2f}%")
+            entry_text = f"{trend_changed_mark}🔴 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_peak:.2f}%"
+            if entry_text not in section_side:  # منع التكرار
+                section_side.append(entry_text)
         elif near_valley:
             percent_from_valley = (last_close / low_lookback.min() - 1) * 100
-            section_side.append(f"{trend_changed_mark}🟢 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_valley:.2f}%")
+            entry_text = f"{trend_changed_mark}🟢 {name} | {last_close:.2f} | {last_candle_date} | {percent_from_valley:.2f}%"
+            if entry_text not in section_side:  # منع التكرار
+                section_side.append(entry_text)
 
     elif trend == "🔻":
         # Downtrend: show only
