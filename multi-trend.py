@@ -1,4 +1,4 @@
-print("EGX ALERTS - Phase 4: Complete Version with Full Symbols & Signals (Updated Sideways Logic)")
+print("EGX ALERTS - Phase 4: Complete Version with Full Symbols & Signals")
 
 import yfinance as yf
 import requests
@@ -34,7 +34,7 @@ symbols = {
     "RAYA": "RAYA.CA","EEII": "EEII.CA","MPCO": "MPCO.CA","GBCO": "GBCO.CA",
     "TMGH": "TMGH.CA","ORHD": "ORHD.CA","AMOC": "AMOC.CA","FWRY": "FWRY.CA",
     "COMI": "COMI.CA","ADIB": "ADIB.CA","PHDC": "PHDC.CA",
-    "EGTS": "EGTS.CA","MCQE": "MCQE.CA","SKPC": "SKPC.CA",
+    "MCQE": "MCQE.CA","SKPC": "SKPC.CA",
     "EGAL": "EGAL.CA"
 }
 
@@ -81,14 +81,15 @@ def rsi(series, period=14):
 # =====================
 EMA_PERIOD = 60
 LOOKBACK = 20
-THRESHOLD = 0.65  # تم تعديلها لزيادة حساسية الصعود/الهبوط
+THRESHOLD = 0.65
 EMA_FORCED_SELL = 25
 
 # =====================
 # Containers
 # =====================
 section_up = []
-section_side = [] 
+section_side = []
+section_side_weak = []  
 section_down = []
 
 # =====================
@@ -133,15 +134,20 @@ for name, ticker in symbols.items():
     prev_side_signal = prev_data.get("last_side_signal", "")  # 🟢 or 🔴
 
     # =====================
-    # Determine Trend (Updated Sideways Logic)
+    # Determine Trend
     # =====================
     if bullish_ratio >= THRESHOLD:
         trend = "↗️"
     elif bearish_ratio >= THRESHOLD:
         trend = "🔻"
-    else 0.45 <= bullish_ratio < THRESHOLD:  # حساسية أكبر للعرضي
+    else:
         trend = "🔛"
-        target_section = section_side
+        bullish_50 = (recent_closes > recent_ema60).sum() / LOOKBACK
+        if bullish_50 < 0.5:
+            target_section = section_side_weak
+        else:
+            target_section = section_side
+
     # =====================
     # Check trend change
     # =====================
