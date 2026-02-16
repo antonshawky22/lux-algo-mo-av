@@ -80,8 +80,8 @@ def rsi(series, period=14):
 # Parameters
 # =====================
 EMA_PERIOD = 60
-LOOKBACK = 20
-THRESHOLD = 0.65  # تم تعديلها لزيادة حساسية الصعود/الهبوط
+LOOKBACK = 15
+THRESHOLD = 0.75  # تم تعديلها لزيادة حساسية الصعود/الهبوط
 EMA_FORCED_SELL = 25
 
 # =====================
