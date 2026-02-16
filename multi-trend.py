@@ -1,4 +1,4 @@
-print("EGX ALERTS - Phase 4: Complete Version with Full Symbols & Signals (Final Stable Version)")
+print("EGX ALERTS - Phase 4: Complete Version with Full Symbols & Signals (Stable)")
 
 import yfinance as yf
 import requests
@@ -80,7 +80,7 @@ def rsi(series, period=14):
 # Parameters
 # =====================
 EMA_PERIOD = 60
-LOOKBACK = 30  # زيادة الشموع السابقة لتوسيع نطاق العرضي
+LOOKBACK = 30  # عدد الشموع السابقة أكبر لتوسيع العرضي
 BULLISH_THRESHOLD = 0.65
 BEARISH_THRESHOLD = 0.65
 EMA_FORCED_SELL = 25
@@ -127,7 +127,7 @@ for name, ticker in symbols.items():
 
     buy_signal = sell_signal = False
     side_signal = ""
-    target_section = None
+    percent_side = 0
 
     prev_data = last_signals.get(name, {})
     prev_signal = prev_data.get("last_signal", "")
@@ -135,14 +135,15 @@ for name, ticker in symbols.items():
     prev_side_signal = prev_data.get("last_side_signal", "")
 
     # =====================
-    # Determine Trend (Expanded Sideways)
+    # Determine Trend
     # =====================
     if bullish_ratio >= BULLISH_THRESHOLD:
         trend = "↗️"
     elif bearish_ratio >= BEARISH_THRESHOLD:
         trend = "🔻"
     else:
-        if 0.45 <= bullish_ratio <= 0.55:  # عرضي أوسع
+        # عرضي موسع
+        if 0.45 <= bullish_ratio <= 0.55:
             trend = "🔛"
             high_lookback = df["Close"].iloc[-EMA_PERIOD:]
             low_lookback = df["Close"].iloc[-EMA_PERIOD:]
@@ -154,16 +155,13 @@ for name, ticker in symbols.items():
             elif last_close <= low_threshold:
                 side_signal = "🟢"
                 percent_side = (last_close - low_lookback.min()) / low_lookback.min() * 100
-            target_section = section_side
         else:
             trend = "↗️" if last_close > df["EMA60"].iloc[-1] else "🔻"
 
     # =====================
-    # Trend change mark
+    # Check trend change
     # =====================
-    trend_changed_mark = ""
-    if prev_trend and prev_trend != trend:
-        trend_changed_mark = "🚧 "
+    trend_changed_mark = "🚧 " if prev_trend and prev_trend != trend else ""
 
     # =====================
     # Strategy by Trend
@@ -175,24 +173,26 @@ for name, ticker in symbols.items():
             sell_signal = True
 
     elif trend == "🔛" and side_signal:
-        # ✅ Add sideways signal only if changed
-        if side_signal != prev_side_signal:
+        # إضافة للعرضي فقط إذا تغيرت الإشارة أو لم تُضاف من قبل
+        if side_signal != prev_side_signal and name not in [s.split()[1] for s in section_side]:
             section_side.append(f"{trend_changed_mark}{side_signal} {name} | {last_close:.2f} | {last_candle_date} | {percent_side:.2f}%")
 
     elif trend == "🔻":
-        if prev_signal != "SELL":  # منع التكرار
+        # إضافة للهابط فقط إذا لم يتم تكراره
+        if prev_signal != "SELL" and name not in [s.split()[1] for s in section_down]:
             section_down.append(f"{trend_changed_mark}{name} | {last_close:.2f} | {last_candle_date}")
 
     # =====================
-    # Forced Sell 🚨
+    # Forced Sell
     # =====================
     if last_close < df["EMA25"].iloc[-1] and new_signals.get(name, {}).get("last_forced_sell") != "FORCED_SELL":
         sell_signal = True
         buy_signal = False
         last_forced = "FORCED_SELL"
-        trend_changed_mark = "🚨" + trend_changed_mark
+        forced_mark = "🚨"
     else:
         last_forced = new_signals.get(name, {}).get("last_forced_sell", "")
+        forced_mark = ""
 
     # =====================
     # Prevent repeated BUY/SELL
@@ -203,11 +203,11 @@ for name, ticker in symbols.items():
         sell_signal = False
 
     # =====================
-    # Prepare Uptrend signals
+    # Prepare signals for Uptrend only
     # =====================
     if trend == "↗️" and (buy_signal or sell_signal):
         mark = "🟢" if buy_signal else "🔴"
-        section_up.append(f"{trend_changed_mark}{mark} {name} | {last_close:.2f} | {last_candle_date}")
+        section_up.append(f"{forced_mark}{trend_changed_mark}{mark} {name} | {last_close:.2f} | {last_candle_date}")
 
     # =====================
     # Update last signals
