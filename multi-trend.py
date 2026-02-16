@@ -233,7 +233,7 @@ if section_down:
     alerts.extend(["- " + s for s in section_down])
 
 if not section_up and not section_side and not section_down:
-    alerts.append("ℹ️ No new signals")
+    alerts.append(f"ℹ️ No new signals\nlastcandle: {last_candle_date}")
 
 if data_failures:
     alerts.append("\n⚠️ Failed to fetch data:\n- " + "\n- ".join(data_failures))
