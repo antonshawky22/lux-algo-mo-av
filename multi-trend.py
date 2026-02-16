@@ -140,7 +140,7 @@ for name, ticker in symbols.items():
         trend = "↗️"
     elif bearish_ratio >= THRESHOLD:
         trend = "🔻"
-    elif 0.45 <= bullish_ratio < THRESHOLD:  # حساسية أكبر للعرضي
+    elif 0.35 <= bullish_ratio < THRESHOLD:  # حساسية أكبر للعرضي
         trend = "🔛"
         target_section = section_side
     else:
