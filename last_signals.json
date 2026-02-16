@@ -85,9 +85,9 @@
   },
   "ORWE": {
     "last_signal": "",
-    "trend": "🔛",
+    "trend": "🔻",
     "last_forced_sell": "",
-    "last_side_signal": "🔴"
+    "last_side_signal": ""
   },
   "JUFO": {
     "last_signal": "",
@@ -115,7 +115,7 @@
   },
   "RMDA": {
     "last_signal": "",
-    "trend": "🔛",
+    "trend": "🔻",
     "last_forced_sell": "",
     "last_side_signal": ""
   },
