@@ -88,8 +88,7 @@ EMA_FORCED_SELL = 25
 # Containers
 # =====================
 section_up = []
-section_side = []
-section_side_weak = []  
+section_side = [] 
 section_down = []
 
 # =====================
@@ -140,13 +139,9 @@ for name, ticker in symbols.items():
         trend = "↗️"
     elif bearish_ratio >= THRESHOLD:
         trend = "🔻"
-    elif 0.45 <= bullish_ratio < THRESHOLD:  # حساسية أكبر للعرضي
+    else 0.45 <= bullish_ratio < THRESHOLD:  # حساسية أكبر للعرضي
         trend = "🔛"
         target_section = section_side
-    else:
-        trend = "🔛"
-        target_section = section_side_weak
-
     # =====================
     # Check trend change
     # =====================
