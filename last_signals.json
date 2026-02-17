@@ -55,7 +55,7 @@
   },
   "ISPH": {
     "last_signal": "",
-    "trend": "↗️",
+    "trend": "🔛",
     "last_forced_sell": false,
     "last_side_signal_actual": "🔴"
   },
@@ -85,7 +85,7 @@
   },
   "ORWE": {
     "last_signal": "",
-    "trend": "↗️",
+    "trend": "🔛",
     "last_forced_sell": false,
     "last_side_signal_actual": "🔴"
   },
@@ -151,7 +151,7 @@
   },
   "ORHD": {
     "last_signal": "",
-    "trend": "↗️",
+    "trend": "🔛",
     "last_forced_sell": false,
     "last_side_signal_actual": "🔴"
   },
@@ -199,7 +199,7 @@
   },
   "EGAL": {
     "last_signal": "SELL",
-    "trend": "↗️",
+    "trend": "🔛",
     "last_forced_sell": true,
     "last_side_signal_actual": ""
   }
