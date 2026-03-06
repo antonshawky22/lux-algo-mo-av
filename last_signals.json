@@ -15,7 +15,7 @@
     "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": true,
-    "last_side_signal_actual": "🟢"
+    "last_side_signal_actual": ""
   },
   "ETEL": {
     "last_signal": "SELL",
@@ -31,7 +31,7 @@
   },
   "EFIH": {
     "last_signal": "SELL",
-    "trend": "↗️",
+    "trend": "🔛",
     "last_forced_sell": true,
     "last_side_signal_actual": ""
   },
@@ -43,7 +43,7 @@
   },
   "OIH": {
     "last_signal": "SELL",
-    "trend": "↗️",
+    "trend": "🔛",
     "last_forced_sell": true,
     "last_side_signal_actual": ""
   },
@@ -51,7 +51,7 @@
     "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": true,
-    "last_side_signal_actual": ""
+    "last_side_signal_actual": "🟢"
   },
   "ISPH": {
     "last_signal": "SELL",
@@ -153,7 +153,7 @@
     "last_signal": "SELL",
     "trend": "🔛",
     "last_forced_sell": true,
-    "last_side_signal_actual": "🟢"
+    "last_side_signal_actual": ""
   },
   "AMOC": {
     "last_signal": "BUY",
@@ -186,7 +186,7 @@
     "last_side_signal_actual": ""
   },
   "MCQE": {
-    "last_signal": "",
+    "last_signal": "SELL",
     "trend": "↗️",
     "last_forced_sell": false,
     "last_side_signal_actual": ""
