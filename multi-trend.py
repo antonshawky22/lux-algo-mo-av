@@ -80,8 +80,8 @@ def rsi(series, period=14):
 # =====================
 EMA_PERIOD = 60
 LOOKBACK = 30
-BULLISH_THRESHOLD = 0.85
-BEARISH_THRESHOLD = 0.88
+BULLISH_THRESHOLD = 0.75
+BEARISH_THRESHOLD = 0.75
 EMA_FORCED_SELL = 60
 
 SIDE_CLOSE_PERCENT = 0.05  # 5٪ قرب القاع/القمة للعرضي
