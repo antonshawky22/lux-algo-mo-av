@@ -108,7 +108,7 @@ for name, ticker in symbols.items():
     df["EMA60"] = df["Close"].ewm(span=EMA_PERIOD, adjust=False).mean()
     df["EMA4"] = df["Close"].ewm(span=4, adjust=False).mean()
     df["EMA9"] = df["Close"].ewm(span=9, adjust=False).mean()
-    df["EMA25"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
+    df["EMA30"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
     df["RSI14"] = rsi(df["Close"], 14)
 
     recent_closes = df["Close"].iloc[-LOOKBACK:]
