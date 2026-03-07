@@ -1,4 +1,4 @@
-print("EGX ALERTS - Stable Version with Non-Repeating Side Trend and Side BUY/SELL Signals")
+print("EGX ALERTS - Stable Version with Non-Repeating Side Trend")
 
 import yfinance as yf
 import requests
@@ -78,11 +78,13 @@ def rsi(series, period=14):
 # =====================
 # Parameters
 # =====================
-EMA_PERIOD = 60          # متوسط الاتجاه الرئيسي
-LOOKBACK = 30
+EMA_PERIOD = 60         # اتجاه متوسط
+LOOKBACK = 30           # عدد الشموع لحساب نسبة الصعود/الهبوط
 BULLISH_THRESHOLD = 0.85
-BEARISH_THRESHOLD = 0.88  # حساسية الهابط أعلى من السابق
-EMA_FORCED_SELL = 60      # ستوب لوس
+BEARISH_THRESHOLD = 0.88
+EMA_FORCED_SELL = 60    # ستوب لوس
+
+SIDE_CLOSE_PERCENT = 0.05  # 5٪ قرب القاع/القمة للعرضي
 
 # =====================
 # Containers
@@ -108,7 +110,7 @@ for name, ticker in symbols.items():
     df["EMA60"] = df["Close"].ewm(span=EMA_PERIOD, adjust=False).mean()
     df["EMA4"] = df["Close"].ewm(span=4, adjust=False).mean()
     df["EMA9"] = df["Close"].ewm(span=9, adjust=False).mean()
-    df["EMA60_FS"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
+    df["EMA60_forced"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
     df["RSI14"] = rsi(df["Close"], 14)
 
     recent_closes = df["Close"].iloc[-LOOKBACK:]
@@ -126,7 +128,6 @@ for name, ticker in symbols.items():
 
     buy_signal = sell_signal = False
     side_signal = ""
-    side_mark = ""
     percent_side = None
 
     prev_data = last_signals.get(name, {})
@@ -146,20 +147,15 @@ for name, ticker in symbols.items():
         trend = "🔛"
         high_lookback = df["Close"].iloc[-EMA_PERIOD:]
         low_lookback = df["Close"].iloc[-EMA_PERIOD:]
-
-        percent_side_low = (last_close - low_lookback.min()) / low_lookback.min() * 100
-        percent_side_high = (high_lookback.max() - last_close) / high_lookback.max() * 100
-
-        # إشارة شراء قرب القاع
-        if percent_side_low <= 2:
-            side_signal = "🟢"
-            side_mark = "BUY"
-            percent_side = percent_side_low
-        # إشارة بيع قرب القمة
-        elif percent_side_high <= 2:
-            side_signal = "🔴"
-            side_mark = "SELL"
-            percent_side = percent_side_high
+        high_threshold = high_lookback.max() * (1 - SIDE_CLOSE_PERCENT)
+        low_threshold = low_lookback.min() * (1 + SIDE_CLOSE_PERCENT)
+        # ============= إشارات العرضي (شراء/بيع) =============
+        if last_close >= high_threshold:
+            side_signal = "🔴"  # قرب القمة → بيع
+            percent_side = (high_lookback.max() - last_close) / high_lookback.max() * 100
+        elif last_close <= low_threshold:
+            side_signal = "🟢"  # قرب القاع → شراء
+            percent_side = (last_close - low_lookback.min()) / low_lookback.min() * 100
 
     # =====================
     # Trend Change Mark
@@ -172,7 +168,7 @@ for name, ticker in symbols.items():
     # Forced Sell 🚨
     # =====================
     forced_sell_mark = ""
-    if last_close < df["EMA60_FS"].iloc[-1] and not prev_forced:
+    if last_close < df["EMA60_forced"].iloc[-1] and not prev_forced:
         sell_signal = True
         buy_signal = False
         forced_sell_mark = "🚨"
@@ -196,10 +192,11 @@ for name, ticker in symbols.items():
         buy_signal = False
     if trend == prev_trend and sell_signal and prev_signal == "SELL":
         sell_signal = False
-    if trend == "🔛" and side_signal == prev_side_actual:
-        side_signal = ""
-    else:
-        prev_side_actual = side_signal
+    if trend == "🔛":
+        if side_signal == prev_side_actual:
+            side_signal = ""  # لا ترسل
+        else:
+            prev_side_actual = side_signal
 
     # =====================
     # Prepare messages
@@ -208,7 +205,7 @@ for name, ticker in symbols.items():
         mark = "🟢" if buy_signal else "🔴"
         section_up.append(f"{trend_changed_mark}{forced_sell_mark}{mark} {name} | {last_close:.2f} | {last_candle_date}")
     elif trend == "🔛" and side_signal:
-        section_side.append(f"{trend_changed_mark}{forced_sell_mark}{side_signal} {name} | {last_close:.2f} | {last_candle_date} | {percent_side:.2f}% | {side_mark}")
+        section_side.append(f"{trend_changed_mark}{forced_sell_mark}{side_signal} {name} | {last_close:.2f} | {last_candle_date} | {percent_side:.2f}%")
     elif trend == "🔻" and trend != prev_trend:
         section_down.append(f"{trend_changed_mark}{forced_sell_mark}{name} | {last_close:.2f} | {last_candle_date}")
 
