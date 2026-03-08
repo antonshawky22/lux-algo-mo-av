@@ -135,48 +135,41 @@ for name, ticker in symbols.items():
     percent_side = None
 
     # =====================
-    # Market Structure Trend
+    # Market Structure Trend - Updated
     # =====================
     lookback_df = df.iloc[-MARKET_STRUCTURE_LOOKBACK:]
-    highest_two = lookback_df["Close"].nlargest(2)
-    lowest_two = lookback_df["Close"].nsmallest(2)
 
-    # آخر وأكبر قمتين
-    high_latest = highest_two.index[0]
-    high_prev = highest_two.index[1]
-    high_latest_val = highest_two.iloc[0]
-    high_prev_val = highest_two.iloc[1]
+    # نأخذ آخر شمعتين زمنياً للقيم العليا والدنيا
+    highs = lookback_df["Close"].sort_index(ascending=True).tail(2)
+    lows = lookback_df["Close"].sort_index(ascending=True).tail(2)
 
-    # آخر وأقل قاعين
-    low_latest = lowest_two.index[0]
-    low_prev = lowest_two.index[1]
-    low_latest_val = lowest_two.iloc[0]
-    low_prev_val = lowest_two.iloc[1]
+    high_prev_val = highs.iloc[0]   # قمة سابقة
+    high_latest_val = highs.iloc[1] # قمة أحدث
 
-    # تحديد الاتجاه
+    low_prev_val = lows.iloc[0]     # قاع سابق
+    low_latest_val = lows.iloc[1]   # قاع أحدث
+
+    # تحديد الاتجاه العام على مدى 120 شمعة
     if high_latest_val > high_prev_val and low_latest_val > low_prev_val:
-        trend = "↗️"
+        trend = "↗️"  # صاعد
     elif high_latest_val < high_prev_val and low_latest_val < low_prev_val:
-        trend = "🔻"
+        trend = "🔻"  # هابط
     else:
-        trend = "🔛"
+        trend = "🔛"  # عرضي
 
     # =====================
     # إشارات داخل الاتجاه
     # =====================
     # الصاعد ↗️
     if trend == "↗️":
-        # شراء عند تقاطع EMA4 فوق EMA9
         if prev_ema4 <= prev_ema9 and last_ema4 > last_ema9:
             buy_signal = True
-        # بيع عند تقاطع EMA4 تحت EMA9 مع RSI > 82
         elif prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
             if df["RSI14"].iloc[-1] > RSI_SELL:
                 sell_signal = True
 
     # الهابط 🔻
     elif trend == "🔻":
-        # بيع عند تقاطع EMA4 تحت EMA9
         if prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
             sell_signal = True
 
@@ -184,7 +177,6 @@ for name, ticker in symbols.items():
     else:
         high_threshold = lookback_df["Close"].max() * (1 - SIDE_CLOSE_PERCENT)
         low_threshold = lookback_df["Close"].min() * (1 + SIDE_CLOSE_PERCENT)
-        # شراء وبيع قرب القاع والقمة
         if last_close <= low_threshold:
             buy_signal = True
             side_signal = "🟢"
@@ -194,7 +186,6 @@ for name, ticker in symbols.items():
             sell_signal = True
             side_signal = "🔴"
             percent_side = (lookback_df["Close"].max() - last_close) / lookback_df["Close"].max() * 100
-        # بيع عند كسر الدعم للعرضي
         if prev_side_buy_price and last_close < prev_side_buy_price:
             sell_signal = True
             side_signal = "🔴💥"
