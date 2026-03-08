@@ -140,7 +140,6 @@ for name, ticker in symbols.items():
     # =====================
     lookback_df = df.iloc[-MARKET_STRUCTURE_LOOKBACK:]
 
-    # البحث عن القمم والقاع بفاصل SWING_PERIOD لتقليل الضوضاء
     highs = []
     lows = []
 
@@ -167,9 +166,15 @@ for name, ticker in symbols.items():
         trend = "🔛"
 
     # =====================
+    # Check for trend change 🚧
+    # =====================
+    trend_change_mark = ""
+    if prev_trend and trend != prev_trend:
+        trend_change_mark = "🚧"
+
+    # =====================
     # إشارات داخل الاتجاه
     # =====================
-    # الصاعد ↗️
     if trend == "↗️":
         if prev_ema4 <= prev_ema9 and last_ema4 > last_ema9:
             buy_signal = True
@@ -177,12 +182,10 @@ for name, ticker in symbols.items():
             if df["RSI14"].iloc[-1] > RSI_SELL:
                 sell_signal = True
 
-    # الهابط 🔻
     elif trend == "🔻":
         if prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
             sell_signal = True
 
-    # العرضي 🔛
     else:
         high_threshold = lookback_df["Close"].max() * (1 - SIDE_CLOSE_PERCENT)
         low_threshold = lookback_df["Close"].min() * (1 + SIDE_CLOSE_PERCENT)
@@ -229,11 +232,11 @@ for name, ticker in symbols.items():
     # =====================
     if trend == "↗️" and (buy_signal or sell_signal):
         mark = "🟢" if buy_signal else "🔴"
-        section_up.append(f"{mark} {name} | {last_close:.2f} | {last_candle_date}")
+        section_up.append(f"{trend_change_mark}{mark} {name} | {last_close:.2f} | {last_candle_date}")
     elif trend == "🔛" and side_signal:
-        section_side.append(f"{side_signal} {name} | {last_close:.2f} | {last_candle_date} | {percent_side:.2f}%")
+        section_side.append(f"{trend_change_mark}{side_signal} {name} | {last_close:.2f} | {last_candle_date} | {percent_side:.2f}%")
     elif trend == "🔻" and sell_signal:
-        section_down.append(f"🔴 {name} | {last_close:.2f} | {last_candle_date}")
+        section_down.append(f"{trend_change_mark}🔴 {name} | {last_close:.2f} | {last_candle_date}")
 
     # =====================
     # Update last signals
