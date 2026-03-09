@@ -235,7 +235,7 @@ for name, ticker in symbols.items():
 # =====================
 # Compile Message
 # =====================
-alerts = ["🚦 EGX Alerts (Compact):\n"]
+alerts = ["🚦 EGX Alerts (m trend ema60):\n"]
 
 if section_up:
     alerts.append("↗️ صاعد (شراء/بيع):")
