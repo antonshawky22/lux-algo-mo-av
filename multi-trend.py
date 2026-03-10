@@ -84,8 +84,8 @@ BULLISH_THRESHOLD = 0.75
 BEARISH_THRESHOLD = 0.75
 EMA_FORCED_SELL = 60
 
-SIDE_CLOSE_PERCENT = 0.05  # 5٪ قرب القاع/القمة للعرضي
-RSI_SELL = 82
+SIDE_CLOSE_PERCENT = 0.03  # 3٪ قرب القاع/القمة للعرضي
+RSI_SELL = 83
 
 # =====================
 # Containers
