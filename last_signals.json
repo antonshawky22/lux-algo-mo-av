@@ -28,7 +28,7 @@
     "prev_side_buy_price": null
   },
   "EAST": {
-    "last_signal": "SELL",
+    "last_signal": "BUY",
     "trend": "🔛",
     "last_forced_sell": true,
     "last_side_signal_actual": "🟢",
@@ -63,7 +63,7 @@
     "prev_side_buy_price": null
   },
   "ISPH": {
-    "last_signal": "SELL",
+    "last_signal": "BUY",
     "trend": "🔛",
     "last_forced_sell": true,
     "last_side_signal_actual": "🟢",
