@@ -78,7 +78,7 @@ def rsi(series, period=14):
 # =====================
 # Parameters
 # =====================
-EMA_PERIOD = 25
+EMA_PERIOD = 40
 TREND_LOOKBACK = 35
 SIDE_LOOKBACK = 45
 
