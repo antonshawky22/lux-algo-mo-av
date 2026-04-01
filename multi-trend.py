@@ -119,8 +119,8 @@ for name, ticker in symbols.items():
     recent_closes = df["Close"].iloc[-TREND_LOOKBACK:]
     recent_ema40 = df["EMA40"].iloc[-TREND_LOOKBACK:]
 
-    bullish_ratio = (recent_closes > recent_ema60).sum() / TREND_LOOKBACK
-    bearish_ratio = (recent_closes < recent_ema60).sum() / TREND_LOOKBACK
+    bullish_ratio = (recent_closes > recent_ema40).sum() / TREND_LOOKBACK
+    bearish_ratio = (recent_closes < recent_ema40).sum() / TREND_LOOKBACK
 
     last_close = df["Close"].iloc[-1]
     prev_close = df["Close"].iloc[-2]
