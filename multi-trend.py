@@ -169,7 +169,7 @@ for name, ticker in symbols.items():
             percent_side = percent_from_low
             prev_side_buy_price = last_close
 
-        if prev_side_buy_price and last_close < prev_side_buy_price:
+        if prev_side_buy_price and last_close < prev_side_buy_price *.97:
             sell_signal = True
             side_signal = "🔴💥"
             percent_side = None
