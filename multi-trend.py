@@ -117,7 +117,7 @@ for name, ticker in symbols.items():
     df["RSI14"] = rsi(df["Close"], 14)
 
     recent_closes = df["Close"].iloc[-TREND_LOOKBACK:]
-    recent_ema60 = df["EMA60"].iloc[-TREND_LOOKBACK:]
+    recent_ema40 = df["EMA40"].iloc[-TREND_LOOKBACK:]
 
     bullish_ratio = (recent_closes > recent_ema60).sum() / TREND_LOOKBACK
     bearish_ratio = (recent_closes < recent_ema60).sum() / TREND_LOOKBACK
@@ -244,7 +244,7 @@ for name, ticker in symbols.items():
 # =====================
 # Compile Message
 # =====================
-alerts = ["🚦 EGX Alerts (m trend ema40):\n"]
+alerts = ["🚦 EGX Alerts (m trend EMA 40):\n"]
 
 if section_up:
     alerts.append("↗️ صاعد (شراء/بيع):")
