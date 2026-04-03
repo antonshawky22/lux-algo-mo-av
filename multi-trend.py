@@ -193,15 +193,15 @@ for name, ticker in symbols.items():
     else:
         last_forced = prev_forced
 
-    # =====================
-    # Strategy by Trend
-    # =====================
-    if trend == "↗️":
-        if prev_ema4 <= prev_ema9 and last_ema4 > last_ema9:
-            buy_signal = True
-        elif prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
-            if df["RSI14"].iloc[-1] > RSI_SELL:
-                sell_signal = True
+    # ============
+# Strategy by Trend
+# =====================
+if trend == "↗️":
+    if df["RSI14"].iloc[-1] < 60:
+        buy_signal = True
+    elif prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
+        if df["RSI14"].iloc[-1] > RSI_SELL:
+            sell_signal = True
 
     # =====================
     # Prevent repeated signals
