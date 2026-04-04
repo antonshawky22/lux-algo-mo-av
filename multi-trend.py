@@ -185,9 +185,9 @@ for name, ticker in symbols.items():
     else:
         last_forced = prev_forced
 
-    # Strategy by Trend
+    # Strategy by Trend (UPDATED)
     if trend == "↗️":
-        if df["RSI14"].iloc[-1] < 60:
+        if df["RSI14"].iloc[-1] < 60 and last_close > df["EMA40"].iloc[-1]:
             buy_signal = True
         elif prev_ema4 >= prev_ema9 and last_ema4 < last_ema9:
             if df["RSI14"].iloc[-1] > RSI_SELL:
