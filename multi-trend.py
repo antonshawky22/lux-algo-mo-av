@@ -111,6 +111,8 @@ for name, ticker in symbols.items():
     df["EMA40"] = df["Close"].ewm(span=EMA_PERIOD, adjust=False).mean()
     df["EMA4"] = df["Close"].ewm(span=4, adjust=False).mean()
     df["EMA9"] = df["Close"].ewm(span=9, adjust=False).mean()
+    df["EMA20"] = df["Close"].ewm(span=20, adjust=False).mean()
+    df["EMA100"] = df["Close"].ewm(span=100, adjust=False).mean()
     df["EMA100_forced"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
     df["RSI14"] = rsi(df["Close"], 14)
 
@@ -139,12 +141,13 @@ for name, ticker in symbols.items():
     prev_side_buy_price = prev_data.get("prev_side_buy_price", None)
 
     # Determine Trend
-    if bullish_ratio >= BULLISH_THRESHOLD:
-        trend = "↗️"
-    elif bearish_ratio >= BEARISH_THRESHOLD:
-        trend = "🔻"
-    else:
-        trend = "🔛"
+    if df["EMA20"].iloc[-1] > df["EMA40"].iloc[-1] > df["EMA100"].iloc[-1] and last_close > df["EMA20"].iloc[-1]:
+    trend = "↗️"
+     elif df["EMA20"].iloc[-1] < df["EMA40"].iloc[-1] < df["EMA100"].iloc[-1] and last_close < df["EMA20"].iloc[-1]:
+           trend = "🔻"
+      else:
+          trend = "🔛"
+      bullish_ratio >= BULLISH_THRESHOLD:
         high_lookback = df["High"].iloc[-SIDE_LOOKBACK:]
         low_lookback = df["Low"].iloc[-SIDE_LOOKBACK:]
 
