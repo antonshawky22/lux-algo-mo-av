@@ -72,8 +72,7 @@ def rsi(series, period=14):
     avg_gain = gain.ewm(alpha=1/period, adjust=False).mean()
     avg_loss = loss.ewm(alpha=1/period, adjust=False).mean()
     rs = avg_gain / avg_loss
-    rsi = 100 - (100 / (1 + rs))
-    return rsi
+    return 100 - (100 / (1 + rs))
 
 # =====================
 # Parameters
@@ -116,12 +115,6 @@ for name, ticker in symbols.items():
     df["EMA100_forced"] = df["Close"].ewm(span=EMA_FORCED_SELL, adjust=False).mean()
     df["RSI14"] = rsi(df["Close"], 14)
 
-    recent_closes = df["Close"].iloc[-TREND_LOOKBACK:]
-    recent_ema40 = df["EMA40"].iloc[-TREND_LOOKBACK:]
-
-    bullish_ratio = (recent_closes > recent_ema40).sum() / TREND_LOOKBACK
-    bearish_ratio = (recent_closes < recent_ema40).sum() / TREND_LOOKBACK
-
     last_close = df["Close"].iloc[-1]
     prev_close = df["Close"].iloc[-2]
     last_ema4 = df["EMA4"].iloc[-1]
@@ -140,14 +133,18 @@ for name, ticker in symbols.items():
     prev_side_actual = prev_data.get("last_side_signal_actual", "")
     prev_side_buy_price = prev_data.get("prev_side_buy_price", None)
 
-    # Determine Trend
+    # =====================
+    # Determine Trend (FIXED)
+    # =====================
     if df["EMA20"].iloc[-1] > df["EMA40"].iloc[-1] > df["EMA100"].iloc[-1] and last_close > df["EMA20"].iloc[-1]:
-    trend = "↗️"
-     elif df["EMA20"].iloc[-1] < df["EMA40"].iloc[-1] < df["EMA100"].iloc[-1] and last_close < df["EMA20"].iloc[-1]:
-           trend = "🔻"
-      else:
-          trend = "🔛"
-      bullish_ratio >= BULLISH_THRESHOLD:
+        trend = "↗️"
+
+    elif df["EMA20"].iloc[-1] < df["EMA40"].iloc[-1] < df["EMA100"].iloc[-1] and last_close < df["EMA20"].iloc[-1]:
+        trend = "🔻"
+
+    else:
+        trend = "🔛"
+
         high_lookback = df["High"].iloc[-SIDE_LOOKBACK:]
         low_lookback = df["Low"].iloc[-SIDE_LOOKBACK:]
 
@@ -173,12 +170,16 @@ for name, ticker in symbols.items():
             side_signal = "🔴💥"
             percent_side = None
 
+    # =====================
     # Trend Change Mark
+    # =====================
     trend_changed_mark = ""
     if prev_trend and prev_trend != trend:
         trend_changed_mark = "🚧 "
 
+    # =====================
     # Forced Sell
+    # =====================
     forced_sell_mark = ""
     if last_close < df["EMA100_forced"].iloc[-1] and not prev_forced:
         sell_signal = True
@@ -188,7 +189,9 @@ for name, ticker in symbols.items():
     else:
         last_forced = prev_forced
 
-    # Strategy by Trend (UPDATED)
+    # =====================
+    # Strategy by Trend
+    # =====================
     if trend == "↗️":
         if df["RSI14"].iloc[-1] < 60 and last_close > df["EMA40"].iloc[-1]:
             buy_signal = True
@@ -196,7 +199,9 @@ for name, ticker in symbols.items():
             if df["RSI14"].iloc[-1] > RSI_SELL:
                 sell_signal = True
 
+    # =====================
     # Prevent repeated signals
+    # =====================
     if trend == prev_trend and buy_signal and prev_signal == "BUY":
         buy_signal = False
     if trend == prev_trend and sell_signal and prev_signal == "SELL":
@@ -207,7 +212,9 @@ for name, ticker in symbols.items():
         else:
             prev_side_actual = side_signal
 
+    # =====================
     # Prepare messages
+    # =====================
     if trend == "↗️" and (buy_signal or sell_signal):
         mark = "🟢" if buy_signal else "🔴"
         section_up.append(f"{trend_changed_mark}{forced_sell_mark}{mark} {name} | {last_close:.2f} | {last_candle_date}")
@@ -219,7 +226,9 @@ for name, ticker in symbols.items():
     elif trend == "🔻" and trend != prev_trend:
         section_down.append(f"{trend_changed_mark}{forced_sell_mark}{name} | {last_close:.2f} | {last_candle_date}")
 
+    # =====================
     # Update last signals
+    # =====================
     new_signals[name] = {
         "last_signal": "BUY" if buy_signal else "SELL" if sell_signal else prev_signal,
         "trend": trend,
