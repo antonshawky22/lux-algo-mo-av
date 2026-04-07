@@ -1,4 +1,4 @@
-print("EGX ALERTS - Corrected Stable Version with Side Trend Signals & RSI83 Sell")
+print("EGX ALERTS - Corrected Stable Version with Side Trend Signals & RSI83 Sell (Forced Down Sell)")
 
 import yfinance as yf
 import requests
@@ -171,9 +171,9 @@ for name, ticker in symbols.items():
             percent_side = None
 
     # =====================
-    # 🔴 التعديل 1: Reset عند بداية الهبوط
+    # 🔴 Forced Down Sell for any H↓
     # =====================
-    if trend == "🔻" and prev_trend != "🔻":
+    if trend == "🔻":
         sell_signal = True
         buy_signal = False
         prev_side_buy_price = None
@@ -181,7 +181,7 @@ for name, ticker in symbols.items():
         prev_signal = ""
 
     # =====================
-    # 🧹 التعديل 2: تنظيف العرضي خارج حالته
+    # 🧹 Clean side signal if not sideways
     # =====================
     if trend != "🔛":
         prev_side_buy_price = None
@@ -195,7 +195,7 @@ for name, ticker in symbols.items():
         trend_changed_mark = "🚧 "
 
     # =====================
-    # Forced Sell
+    # Forced Sell EMA100
     # =====================
     forced_sell_mark = ""
     if last_close < df["EMA100_forced"].iloc[-1] and not prev_forced:
@@ -217,7 +217,7 @@ for name, ticker in symbols.items():
                 sell_signal = True
 
     # =====================
-    # 🔁 التعديل 3: منع التكرار بدون تعطيل
+    # Prevent Repetition
     # =====================
     if buy_signal and prev_signal == "BUY":
         buy_signal = False
@@ -241,14 +241,14 @@ for name, ticker in symbols.items():
         percent_display = f"{percent_side:.2f}%" if percent_side is not None else ""
         section_side.append(f"{trend_changed_mark}{forced_sell_mark}{side_signal} {name} | {last_close:.2f} | {last_candle_date} | {percent_display}")
 
-    elif trend == "🔻" and trend != prev_trend:
+    elif trend == "🔻":
         section_down.append(f"{trend_changed_mark}{forced_sell_mark}{name} | {last_close:.2f} | {last_candle_date}")
 
     # =====================
     # Update last signals
     # =====================
     new_signals[name] = {
-        "last_signal": "BUY" if buy_signal else "SELL" if sell_signal else prev_signal,
+        "last_signal": "BUY" if buy_signal else "SELL",
         "trend": trend,
         "last_forced_sell": last_forced,
         "last_side_signal_actual": prev_side_actual,
