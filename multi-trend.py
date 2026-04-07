@@ -171,6 +171,23 @@ for name, ticker in symbols.items():
             percent_side = None
 
     # =====================
+    # 🔴 التعديل 1: Reset عند بداية الهبوط
+    # =====================
+    if trend == "🔻" and prev_trend != "🔻":
+        sell_signal = True
+        buy_signal = False
+        prev_side_buy_price = None
+        prev_side_actual = ""
+        prev_signal = ""
+
+    # =====================
+    # 🧹 التعديل 2: تنظيف العرضي خارج حالته
+    # =====================
+    if trend != "🔛":
+        prev_side_buy_price = None
+        prev_side_actual = ""
+
+    # =====================
     # Trend Change Mark
     # =====================
     trend_changed_mark = ""
@@ -200,12 +217,13 @@ for name, ticker in symbols.items():
                 sell_signal = True
 
     # =====================
-    # Prevent repeated signals
+    # 🔁 التعديل 3: منع التكرار بدون تعطيل
     # =====================
-    if trend == prev_trend and buy_signal and prev_signal == "BUY":
+    if buy_signal and prev_signal == "BUY":
         buy_signal = False
-    if trend == prev_trend and sell_signal and prev_signal == "SELL":
+    if sell_signal and prev_signal == "SELL":
         sell_signal = False
+
     if trend == "🔛":
         if side_signal == prev_side_actual:
             side_signal = ""
