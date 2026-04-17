@@ -183,7 +183,7 @@ for name, ticker in symbols.items():
             entry_price = None
 
     # =====================
-    # UP TREND LOGIC (UPDATED FILTER)
+    # UP TREND LOGIC (UPDATED EXIT)
     # =====================
     if trend == "↗️":
 
@@ -192,12 +192,23 @@ for name, ticker in symbols.items():
             in_position = True
             entry_price = last_close
 
-        elif in_position:
-            cross_down = prev["EMA4"] >= prev["EMA9"] and last["EMA4"] < last["EMA9"]
-            if cross_down and last["RSI14"] > RSI_SELL:
-                sell_signal = True
-                in_position = False
-                entry_price = None
+    # =====================
+    # EXIT LOGIC (UPDATED + MERGED)
+    
+   if in_position:
+
+    cross_down = prev["EMA4"] >= prev["EMA9"] and last["EMA4"] < last["EMA9"]
+
+    stop_loss = last_close < entry_price * 0.96
+
+    trend_flip = (prev_trend == "↗️" and trend in ["🔛", "🔻"])
+
+    rsi_sell = last["RSI14"] > RSI_SELL   # 🔥 الجديد
+
+    if stop_loss or cross_down or trend_flip or rsi_sell:
+        sell_signal = True
+        in_position = False
+        entry_price = None
 
     # =====================
     # DOWN TREND EXIT
