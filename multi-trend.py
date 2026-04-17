@@ -99,12 +99,16 @@ for name, ticker in symbols.items():
 
     last_candle_date = df.index[-1].date()
 
-    # Indicators
+    # =====================
+    # EMA (UPDATED)
+    # =====================
+    df["EMA10"] = df["Close"].ewm(span=10, adjust=True).mean()
+    df["EMA15"] = df["Close"].ewm(span=15, adjust=True).mean()
+    df["EMA30"] = df["Close"].ewm(span=30, adjust=True).mean()
+
     df["EMA4"] = df["Close"].ewm(span=4, adjust=True).mean()
     df["EMA9"] = df["Close"].ewm(span=9, adjust=True).mean()
-    df["EMA20"] = df["Close"].ewm(span=20, adjust=True).mean()
-    df["EMA40"] = df["Close"].ewm(span=40, adjust=True).mean()
-    df["EMA100"] = df["Close"].ewm(span=100, adjust=True).mean()
+
     df["RSI14"] = rsi(df["Close"], 14)
 
     last = df.iloc[-1]
@@ -127,11 +131,11 @@ for name, ticker in symbols.items():
     percent_side = None
 
     # =====================
-    # Trend
+    # Trend (UPDATED)
     # =====================
-    if last["EMA20"] > last["EMA40"] > last["EMA100"]:
+    if last["EMA10"] > last["EMA15"] > last["EMA30"]:
         trend = "↗️"
-    elif last["EMA20"] < last["EMA40"] < last["EMA100"]:
+    elif last["EMA10"] < last["EMA15"] < last["EMA30"]:
         trend = "🔻"
     else:
         trend = "🔛"
@@ -139,7 +143,7 @@ for name, ticker in symbols.items():
     trend_changed = trend != prev_trend
 
     # =====================
-    # 🔥 SIDE → TREND CONVERSION
+    # SIDE → TREND CONVERSION
     # =====================
     converted_to_trend = (
         prev_trend == "🔛" and
@@ -158,7 +162,6 @@ for name, ticker in symbols.items():
         from_high = (high - last_close) / high
         from_low = (last_close - low) / low
 
-        # BUY
         if not in_position and from_low <= SIDE_CLOSE_PERCENT:
             buy_signal = True
             side_signal = "🟢"
@@ -166,7 +169,6 @@ for name, ticker in symbols.items():
             in_position = True
             entry_price = last_close
 
-        # SELL
         elif in_position and from_high <= SIDE_CLOSE_PERCENT:
             sell_signal = True
             side_signal = "🔴"
@@ -174,7 +176,6 @@ for name, ticker in symbols.items():
             in_position = False
             entry_price = None
 
-        # STOP
         elif in_position and last_close < entry_price * 0.96:
             sell_signal = True
             side_signal = "🔴💥"
@@ -182,17 +183,15 @@ for name, ticker in symbols.items():
             entry_price = None
 
     # =====================
-    # UP TREND LOGIC
+    # UP TREND LOGIC (UPDATED FILTER)
     # =====================
     if trend == "↗️":
 
-        # BUY
-        if not in_position and last["RSI14"] < 60 and last_close > last["EMA40"]:
+        if not in_position and last["RSI14"] < 60 and last_close > last["EMA15"]:
             buy_signal = True
             in_position = True
             entry_price = last_close
 
-        # SELL
         elif in_position:
             cross_down = prev["EMA4"] >= prev["EMA9"] and last["EMA4"] < last["EMA9"]
             if cross_down and last["RSI14"] > RSI_SELL:
@@ -209,7 +208,7 @@ for name, ticker in symbols.items():
         entry_price = None
 
     # =====================
-    # Messages
+    # Messages (UNCHANGED)
     # =====================
     trend_mark = "🚧 " if trend_changed else ""
 
@@ -234,7 +233,7 @@ for name, ticker in symbols.items():
     }
 
 # =====================
-# Message
+# Message (UNCHANGED)
 # =====================
 alerts = ["🚦 EGX Alerts:\n"]
 
@@ -256,7 +255,7 @@ if data_failures:
 
 elif not section_up and not section_side and not section_down:
     alerts.append(f"ℹ️ No new signals for today (last candle: {last_candle_date})")
-    
+
 # =====================
 # Save + Send
 # =====================
