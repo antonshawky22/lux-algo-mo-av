@@ -20,7 +20,7 @@
     "entry_price": null
   },
   "EAST": {
-    "trend": "🔛",
+    "trend": "↗️",
     "in_position": false,
     "entry_price": null
   },
@@ -45,7 +45,7 @@
     "entry_price": null
   },
   "ISPH": {
-    "trend": "🔻",
+    "trend": "🔛",
     "in_position": false,
     "entry_price": null
   },
@@ -55,7 +55,7 @@
     "entry_price": null
   },
   "MTIE": {
-    "trend": "🔻",
+    "trend": "🔛",
     "in_position": false,
     "entry_price": null
   },
@@ -111,8 +111,8 @@
   },
   "MPCO": {
     "trend": "↗️",
-    "in_position": false,
-    "entry_price": null
+    "in_position": true,
+    "entry_price": 1.5700000524520874
   },
   "GBCO": {
     "trend": "🔛",
@@ -150,7 +150,7 @@
     "entry_price": null
   },
   "PHDC": {
-    "trend": "🔛",
+    "trend": "↗️",
     "in_position": false,
     "entry_price": null
   },
@@ -160,13 +160,13 @@
     "entry_price": null
   },
   "SKPC": {
-    "trend": "🔛",
+    "trend": "🔻",
     "in_position": false,
     "entry_price": null
   },
   "EGAL": {
     "trend": "↗️",
-    "in_position": true,
-    "entry_price": 307.0
+    "in_position": false,
+    "entry_price": null
   }
 }
