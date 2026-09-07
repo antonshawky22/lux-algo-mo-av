@@ -31,24 +31,24 @@ RUNUP_LOOKBACK = 120
 MAX_RUNUP_PERCENT = 80
 MAX_GAP_DOWN_PERCENT = -5.0
 
-BUY1_RSI = 66
-BUY2_RSI = 57
-BUY3_RSI = 48
+BUY1_RSI = 60
+BUY2_RSI = 55
+BUY3_RSI = 50
 
-SELL1_RSI = 76
+SELL1_RSI = 85
 SELL1_MIN_PROFIT = 12
 SELL2_MIN_POSITION = 0.30
 SELL2_MAX_POSITION = 0.70
-SELL2_RSI = 82
+SELL2_RSI = 90
 SELL2_MIN_PROFIT = 16
-SELL3_RSI = 90
+SELL3_RSI = 92
 SELL3_MIN_PROFIT = 22
 
-STOP_L1 = -12
-STOP_L2 = -10
+STOP_L1 = -10
+STOP_L2 = -8
 STOP_L3 = -8
-TRAILING_TRIGGER = 40
-TRAILING_GIVEBACK = 13
+TRAILING_TRIGGER = 30
+TRAILING_GIVEBACK = 7
 
 MIN_BARS = 40
 
@@ -347,7 +347,7 @@ def backtest_stock(symbol, df):
             })
 
         # BUY L2
-        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.95:
+        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.97:
             old_pos = position
             state["position"] = 0.66
             state["avg_price"] = update_avg(avg_price, old_pos, price, state["position"])
@@ -366,7 +366,7 @@ def backtest_stock(symbol, df):
             })
 
         # BUY L3
-        elif 0.65 < position < 1.0 and buy3 and price < avg_price * 0.91:
+        elif 0.65 < position < 1.0 and buy3 and price < avg_price * 0.94:
             old_pos = position
             state["position"] = 1.0
             state["avg_price"] = update_avg(avg_price, old_pos, price, state["position"])
