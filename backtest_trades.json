@@ -12,13 +12,13 @@
     "third_entry": null,
     "exits": [],
     "last_average_price": 35.21,
-    "final_exit_price": 28.02,
-    "exit_date": "2025-05-11",
-    "profit_pct": -20.42,
+    "final_exit_price": 28.26,
+    "exit_date": "2025-05-07",
+    "profit_pct": -19.74,
     "max_position": 0.33,
     "peak_profit": 1.8744674808293,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -20.42
+    "stop_trigger_profit": -19.74
   },
   {
     "symbol": "DSCW",
@@ -350,13 +350,13 @@
     },
     "exits": [],
     "last_average_price": 55.3801,
-    "final_exit_price": 47.0,
-    "exit_date": "2025-06-16",
-    "profit_pct": -15.13,
+    "final_exit_price": 47.19,
+    "exit_date": "2025-06-15",
+    "profit_pct": -14.79,
     "max_position": 1.0,
     "peak_profit": 0.2203225522164449,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -15.13
+    "stop_trigger_profit": -14.79
   },
   {
     "symbol": "GBCO",
@@ -902,13 +902,13 @@
     "third_entry": null,
     "exits": [],
     "last_average_price": 29.37,
-    "final_exit_price": 23.22,
-    "exit_date": "2025-11-25",
-    "profit_pct": -20.94,
+    "final_exit_price": 24.21,
+    "exit_date": "2025-11-13",
+    "profit_pct": -17.57,
     "max_position": 0.33,
     "peak_profit": 10.31664964249233,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -20.94
+    "stop_trigger_profit": -17.57
   },
   {
     "symbol": "EGAL",
