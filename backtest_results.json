@@ -18,10 +18,10 @@
     "sell2_min_profit": 20,
     "sell3_rsi": 86,
     "sell3_min_profit": 25,
-    "stop_l1": -19,
+    "stop_l1": -18,
     "stop_l2": -17,
     "stop_l3": -13,
-    "trailing_trigger": 37,
+    "trailing_trigger": 36,
     "trailing_giveback": 11
   },
   "statistics": {
