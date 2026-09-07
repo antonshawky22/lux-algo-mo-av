@@ -323,20 +323,16 @@
       "price": 55.74,
       "position_added": 0.33
     },
-    "third_entry": {
-      "date": "2025-04-07",
-      "price": 52.75,
-      "position_added": 0.34
-    },
+    "third_entry": null,
     "exits": [],
-    "last_average_price": 55.5385,
+    "last_average_price": 56.975,
     "final_exit_price": 47.19,
     "exit_date": "2025-06-15",
-    "profit_pct": -15.03,
-    "max_position": 1.0,
+    "profit_pct": -17.17,
+    "max_position": 0.66,
     "peak_profit": 0.0,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -15.03
+    "stop_trigger_profit": -17.17
   },
   {
     "symbol": "GBCO",
@@ -1048,17 +1044,13 @@
       "price": 39.9,
       "position_added": 0.33
     },
-    "third_entry": {
-      "date": "2026-05-04",
-      "price": 38.0,
-      "position_added": 0.34
-    },
+    "third_entry": null,
     "exits": [],
-    "last_average_price": 40.079,
+    "last_average_price": 41.15,
     "final_exit_price": 36.1,
     "exit_date": "2026-09-07",
-    "profit_pct": -9.93,
-    "max_position": 1.0,
+    "profit_pct": -12.27,
+    "max_position": 0.66,
     "peak_profit": 4.009720534629401,
     "exit_reason": "END_OF_DATA"
   },
