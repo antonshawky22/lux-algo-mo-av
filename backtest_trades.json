@@ -227,13 +227,13 @@
     "third_entry": null,
     "exits": [],
     "last_average_price": 78.57,
-    "final_exit_price": 118.11,
-    "exit_date": "2026-08-19",
-    "profit_pct": 50.32,
+    "final_exit_price": 65.52,
+    "exit_date": "2025-12-08",
+    "profit_pct": -16.61,
     "max_position": 0.66,
-    "peak_profit": 61.95749013618431,
-    "exit_reason": "TRAILING STOP",
-    "stop_trigger_profit": 50.32
+    "peak_profit": 8.104768964665187,
+    "exit_reason": "STOP LOSS",
+    "stop_trigger_profit": -16.61
   },
   {
     "symbol": "MPCO",
@@ -868,13 +868,13 @@
     "third_entry": null,
     "exits": [],
     "last_average_price": 10.3,
-    "final_exit_price": 8.0,
-    "exit_date": "2026-03-01",
-    "profit_pct": -22.33,
+    "final_exit_price": 8.6,
+    "exit_date": "2026-02-26",
+    "profit_pct": -16.5,
     "max_position": 0.33,
     "peak_profit": 14.368932038834936,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -22.33
+    "stop_trigger_profit": -16.5
   },
   {
     "symbol": "JUFO",
@@ -1074,6 +1074,27 @@
     "max_position": 0.33,
     "peak_profit": 41.70212765957447,
     "exit_reason": "EXIT FULL"
+  },
+  {
+    "symbol": "SWDY",
+    "cycle": 2,
+    "status": "CLOSED",
+    "first_entry": {
+      "date": "2026-01-13",
+      "price": 78.51,
+      "position_added": 0.33
+    },
+    "second_entry": null,
+    "third_entry": null,
+    "exits": [],
+    "last_average_price": 78.51,
+    "final_exit_price": 118.11,
+    "exit_date": "2026-08-19",
+    "profit_pct": 50.44,
+    "max_position": 0.33,
+    "peak_profit": 62.08126353330785,
+    "exit_reason": "TRAILING STOP",
+    "stop_trigger_profit": 50.44
   },
   {
     "symbol": "JUFO",
