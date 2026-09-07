@@ -322,13 +322,13 @@
     },
     "exits": [],
     "last_average_price": 55.3801,
-    "final_exit_price": 49.0,
-    "exit_date": "2025-05-22",
-    "profit_pct": -11.52,
+    "final_exit_price": 48.5,
+    "exit_date": "2025-05-25",
+    "profit_pct": -12.42,
     "max_position": 1.0,
     "peak_profit": 0.2203225522164449,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -11.52
+    "stop_trigger_profit": -12.42
   },
   {
     "symbol": "GBCO",
@@ -969,13 +969,13 @@
     },
     "exits": [],
     "last_average_price": 40.079,
-    "final_exit_price": 35.4,
-    "exit_date": "2026-08-25",
-    "profit_pct": -11.67,
+    "final_exit_price": 35.15,
+    "exit_date": "2026-08-26",
+    "profit_pct": -12.3,
     "max_position": 1.0,
     "peak_profit": 4.009720534629401,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -11.67
+    "stop_trigger_profit": -12.3
   },
   {
     "symbol": "OIH",
