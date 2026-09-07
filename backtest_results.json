@@ -8,7 +8,7 @@
     "ema100_period": 100,
     "runup_lookback": 120,
     "max_runup_percent": 80,
-    "max_gap_down_percent": -5.0,
+    "max_gap_down_percent": -4,
     "buy1_rsi": 60,
     "buy2_rsi": 55,
     "buy3_rsi": 48,
