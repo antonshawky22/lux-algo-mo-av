@@ -313,7 +313,7 @@ def backtest_stock(symbol, df):
             df["EMA100"].iloc[i] > df["EMA100"].iloc[i - 5] and
             df["EMA100"].iloc[i - 5] > df["EMA100"].iloc[i - 10] and
             df["EMA100"].iloc[i] > df["EMA100"].iloc[i - 10] * 1.002 and
-            price <= df["EMA100"].iloc[i] * 1.07
+            price <= df["EMA100"].iloc[i] * 1.06
         )
 
         buy1 = safe_to_buy and ema_up and no_gap_down and rsi_val <= BUY1_RSI
