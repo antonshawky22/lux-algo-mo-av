@@ -221,28 +221,20 @@
       "position_added": 0.33
     },
     "second_entry": {
-      "date": "2025-10-26",
-      "price": 76.2,
+      "date": "2025-08-21",
+      "price": 77.0,
       "position_added": 0.33
     },
     "third_entry": null,
-    "exits": [
-      {
-        "date": "2026-08-04",
-        "type": "SELL L2",
-        "price": 109.02,
-        "position_sold": 0.33,
-        "profit": 38.76
-      }
-    ],
-    "last_average_price": 78.57,
-    "final_exit_price": 118.11,
-    "exit_date": "2026-08-19",
-    "profit_pct": 44.54,
+    "exits": [],
+    "last_average_price": 78.97,
+    "final_exit_price": 65.52,
+    "exit_date": "2025-12-08",
+    "profit_pct": -17.03,
     "max_position": 0.66,
-    "peak_profit": 61.95749013618431,
-    "exit_reason": "TRAILING STOP",
-    "stop_trigger_profit": 50.32
+    "peak_profit": 8.104768964665187,
+    "exit_reason": "STOP LOSS",
+    "stop_trigger_profit": -17.03
   },
   {
     "symbol": "OLFI",
@@ -333,20 +325,16 @@
       "price": 21.21,
       "position_added": 0.33
     },
-    "third_entry": {
-      "date": "2025-04-06",
-      "price": 20.37,
-      "position_added": 0.34
-    },
+    "third_entry": null,
     "exits": [],
-    "last_average_price": 21.1587,
-    "final_exit_price": 18.4,
-    "exit_date": "2025-06-17",
-    "profit_pct": -13.04,
-    "max_position": 1.0,
-    "peak_profit": 5.913879397127425,
+    "last_average_price": 21.565,
+    "final_exit_price": 15.64,
+    "exit_date": "2026-01-04",
+    "profit_pct": -27.48,
+    "max_position": 0.66,
+    "peak_profit": 3.9183862740551767,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -13.04
+    "stop_trigger_profit": -27.48
   },
   {
     "symbol": "EMFD",
@@ -640,8 +628,8 @@
       "position_added": 0.33
     },
     "second_entry": {
-      "date": "2025-06-19",
-      "price": 51.3,
+      "date": "2025-05-20",
+      "price": 51.6,
       "position_added": 0.33
     },
     "third_entry": null,
@@ -651,15 +639,15 @@
         "type": "SELL L2",
         "price": 68.68,
         "position_sold": 0.33,
-        "profit": 31.44
+        "profit": 31.07
       }
     ],
-    "last_average_price": 52.25,
+    "last_average_price": 52.4,
     "final_exit_price": 70.9,
     "exit_date": "2025-11-06",
-    "profit_pct": 33.57,
+    "profit_pct": 33.19,
     "max_position": 0.66,
-    "peak_profit": 35.69377990430623,
+    "peak_profit": 35.305343511450374,
     "exit_reason": "EXIT FULL"
   },
   {
@@ -667,8 +655,8 @@
     "cycle": 1,
     "status": "CLOSED",
     "first_entry": {
-      "date": "2025-06-03",
-      "price": 4.5,
+      "date": "2025-06-02",
+      "price": 4.51,
       "position_added": 0.33
     },
     "second_entry": {
@@ -678,14 +666,14 @@
     },
     "third_entry": null,
     "exits": [],
-    "last_average_price": 4.38,
+    "last_average_price": 4.385,
     "final_exit_price": 3.14,
     "exit_date": "2025-11-24",
-    "profit_pct": -28.31,
+    "profit_pct": -28.39,
     "max_position": 0.66,
-    "peak_profit": 5.022831050228305,
+    "peak_profit": 4.903078677309005,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -28.31
+    "stop_trigger_profit": -28.39
   },
   {
     "symbol": "ISPH",
@@ -884,27 +872,6 @@
     "exit_reason": "SELL L2"
   },
   {
-    "symbol": "SKPC",
-    "cycle": 2,
-    "status": "CLOSED",
-    "first_entry": {
-      "date": "2025-10-13",
-      "price": 19.66,
-      "position_added": 0.33
-    },
-    "second_entry": null,
-    "third_entry": null,
-    "exits": [],
-    "last_average_price": 19.66,
-    "final_exit_price": 15.64,
-    "exit_date": "2026-01-04",
-    "profit_pct": -20.45,
-    "max_position": 0.33,
-    "peak_profit": 1.3224821973550436,
-    "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -20.45
-  },
-  {
     "symbol": "JUFO",
     "cycle": 2,
     "status": "CLOSED",
@@ -1063,6 +1030,34 @@
     "stop_trigger_profit": 24.24
   },
   {
+    "symbol": "SWDY",
+    "cycle": 2,
+    "status": "CLOSED",
+    "first_entry": {
+      "date": "2026-01-13",
+      "price": 78.51,
+      "position_added": 0.33
+    },
+    "second_entry": null,
+    "third_entry": null,
+    "exits": [
+      {
+        "date": "2026-08-04",
+        "type": "SELL L2",
+        "price": 109.02,
+        "position_sold": 0.33,
+        "profit": 38.86
+      }
+    ],
+    "last_average_price": 78.51,
+    "final_exit_price": 109.02,
+    "exit_date": "2026-08-04",
+    "profit_pct": 38.86,
+    "max_position": 0.33,
+    "peak_profit": 38.861291555215885,
+    "exit_reason": "SELL L2"
+  },
+  {
     "symbol": "OIH",
     "cycle": 1,
     "status": "CLOSED",
@@ -1212,7 +1207,7 @@
   },
   {
     "symbol": "SKPC",
-    "cycle": 3,
+    "cycle": 2,
     "status": "OPEN",
     "first_entry": {
       "date": "2026-03-15",
@@ -1311,17 +1306,13 @@
       "price": 18.7,
       "position_added": 0.33
     },
-    "third_entry": {
-      "date": "2026-06-10",
-      "price": 18.1,
-      "position_added": 0.34
-    },
+    "third_entry": null,
     "exits": [],
-    "last_average_price": 18.7369,
+    "last_average_price": 19.065,
     "final_exit_price": 19.34,
     "exit_date": "2026-09-08",
-    "profit_pct": 3.22,
-    "max_position": 1.0,
+    "profit_pct": 1.44,
+    "max_position": 0.66,
     "peak_profit": 5.455481214616566,
     "exit_reason": "END_OF_DATA"
   },
