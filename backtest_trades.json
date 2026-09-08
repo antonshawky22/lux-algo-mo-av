@@ -226,23 +226,15 @@
       "position_added": 0.33
     },
     "third_entry": null,
-    "exits": [
-      {
-        "date": "2026-08-04",
-        "type": "SELL L2",
-        "price": 109.02,
-        "position_sold": 0.33,
-        "profit": 38.76
-      }
-    ],
+    "exits": [],
     "last_average_price": 78.57,
-    "final_exit_price": 118.11,
-    "exit_date": "2026-08-19",
-    "profit_pct": 44.54,
+    "final_exit_price": 65.52,
+    "exit_date": "2025-12-08",
+    "profit_pct": -16.61,
     "max_position": 0.66,
-    "peak_profit": 61.95749013618431,
-    "exit_reason": "TRAILING STOP",
-    "stop_trigger_profit": 50.32
+    "peak_profit": 8.104768964665187,
+    "exit_reason": "STOP LOSS",
+    "stop_trigger_profit": -16.61
   },
   {
     "symbol": "MPCO",
@@ -285,13 +277,13 @@
     "third_entry": null,
     "exits": [],
     "last_average_price": 21.555,
-    "final_exit_price": 15.64,
-    "exit_date": "2026-01-04",
-    "profit_pct": -27.44,
+    "final_exit_price": 18.03,
+    "exit_date": "2025-06-19",
+    "profit_pct": -16.35,
     "max_position": 0.66,
     "peak_profit": 4.566210045662101,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -27.44
+    "stop_trigger_profit": -16.35
   },
   {
     "symbol": "OLFI",
@@ -917,13 +909,34 @@
     "third_entry": null,
     "exits": [],
     "last_average_price": 10.3,
-    "final_exit_price": 8.0,
-    "exit_date": "2026-03-01",
-    "profit_pct": -22.33,
+    "final_exit_price": 8.6,
+    "exit_date": "2026-02-26",
+    "profit_pct": -16.5,
     "max_position": 0.33,
     "peak_profit": 14.368932038834936,
     "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -22.33
+    "stop_trigger_profit": -16.5
+  },
+  {
+    "symbol": "SKPC",
+    "cycle": 2,
+    "status": "CLOSED",
+    "first_entry": {
+      "date": "2025-10-13",
+      "price": 19.66,
+      "position_added": 0.33
+    },
+    "second_entry": null,
+    "third_entry": null,
+    "exits": [],
+    "last_average_price": 19.66,
+    "final_exit_price": 15.64,
+    "exit_date": "2026-01-04",
+    "profit_pct": -20.45,
+    "max_position": 0.33,
+    "peak_profit": 1.3224821973550436,
+    "exit_reason": "STOP LOSS",
+    "stop_trigger_profit": -20.45
   },
   {
     "symbol": "JUFO",
@@ -1137,6 +1150,34 @@
     "exit_reason": "EXIT FULL"
   },
   {
+    "symbol": "SWDY",
+    "cycle": 2,
+    "status": "CLOSED",
+    "first_entry": {
+      "date": "2026-01-13",
+      "price": 78.51,
+      "position_added": 0.33
+    },
+    "second_entry": null,
+    "third_entry": null,
+    "exits": [
+      {
+        "date": "2026-08-04",
+        "type": "SELL L2",
+        "price": 109.02,
+        "position_sold": 0.33,
+        "profit": 38.86
+      }
+    ],
+    "last_average_price": 78.51,
+    "final_exit_price": 109.02,
+    "exit_date": "2026-08-04",
+    "profit_pct": 38.86,
+    "max_position": 0.33,
+    "peak_profit": 38.861291555215885,
+    "exit_reason": "SELL L2"
+  },
+  {
     "symbol": "JUFO",
     "cycle": 3,
     "status": "OPEN",
@@ -1295,8 +1336,8 @@
   },
   {
     "symbol": "SKPC",
-    "cycle": 2,
-    "status": "OPEN",
+    "cycle": 3,
+    "status": "CLOSED",
     "first_entry": {
       "date": "2026-03-15",
       "price": 18.01,
@@ -1310,12 +1351,13 @@
     "third_entry": null,
     "exits": [],
     "last_average_price": 17.73,
-    "final_exit_price": 19.05,
-    "exit_date": "2026-09-08",
-    "profit_pct": 7.45,
+    "final_exit_price": 14.89,
+    "exit_date": "2026-07-15",
+    "profit_pct": -16.02,
     "max_position": 0.66,
-    "peak_profit": 7.445008460236887,
-    "exit_reason": "END_OF_DATA"
+    "peak_profit": 4.512126339537511,
+    "exit_reason": "STOP LOSS",
+    "stop_trigger_profit": -16.02
   },
   {
     "symbol": "RMDA",
@@ -1724,6 +1766,26 @@
     "profit_pct": 3.33,
     "max_position": 0.33,
     "peak_profit": 4.102167182662534,
+    "exit_reason": "END_OF_DATA"
+  },
+  {
+    "symbol": "SKPC",
+    "cycle": 4,
+    "status": "OPEN",
+    "first_entry": {
+      "date": "2026-08-26",
+      "price": 17.21,
+      "position_added": 0.33
+    },
+    "second_entry": null,
+    "third_entry": null,
+    "exits": [],
+    "last_average_price": 17.21,
+    "final_exit_price": 19.05,
+    "exit_date": "2026-09-08",
+    "profit_pct": 10.69,
+    "max_position": 0.33,
+    "peak_profit": 10.691458454386984,
     "exit_reason": "END_OF_DATA"
   }
 ]
