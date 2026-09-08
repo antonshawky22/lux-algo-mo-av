@@ -27,7 +27,7 @@ INITIAL_CAPITAL = 100000.0
 
 RSI_PERIOD = 14
 EMA100_PERIOD = 95
-RUNUP_LOOKBACK = 160
+RUNUP_LOOKBACK = 140
 MAX_RUNUP_PERCENT = 80
 MAX_GAP_DOWN_PERCENT = -5
 
@@ -313,7 +313,7 @@ def backtest_stock(symbol, df):
             df["EMA100"].iloc[i] > df["EMA100"].iloc[i - 5] and
             df["EMA100"].iloc[i - 5] > df["EMA100"].iloc[i - 10] and
             df["EMA100"].iloc[i] > df["EMA100"].iloc[i - 10] * 1.002 and
-            price <= df["EMA100"].iloc[i] * 1.06
+            price <= df["EMA100"].iloc[i] * 1.07
         )
 
         buy1 = safe_to_buy and ema_up and no_gap_down and rsi_val <= BUY1_RSI
