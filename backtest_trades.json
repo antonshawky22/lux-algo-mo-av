@@ -3,6 +3,8 @@
     "symbol": "JUFO",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-02",
       "price": 35.21,
@@ -28,6 +30,8 @@
     "symbol": "SUGR",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-02",
       "price": 49.17,
@@ -52,6 +56,8 @@
     "symbol": "AMOC",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-02",
       "price": 7.95,
@@ -88,6 +94,8 @@
     "symbol": "MCQE",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-02",
       "price": 24.51,
@@ -116,6 +124,8 @@
     "symbol": "EAST",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-03",
       "price": 31.01,
@@ -144,6 +154,8 @@
     "symbol": "ETEL",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-10",
       "price": 36.61,
@@ -169,6 +181,8 @@
     "symbol": "SWDY",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-10",
       "price": 80.94,
@@ -202,6 +216,8 @@
     "symbol": "OLFI",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-03-12",
       "price": 18.78,
@@ -227,6 +243,8 @@
     "symbol": "ABUK",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-03-17",
       "price": 58.21,
@@ -256,6 +274,8 @@
     "symbol": "GBCO",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-03-19",
       "price": 18.03,
@@ -277,6 +297,8 @@
     "symbol": "SKPC",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-03-19",
       "price": 21.92,
@@ -302,6 +324,8 @@
     "symbol": "EMFD",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-03-25",
       "price": 8.26,
@@ -327,6 +351,8 @@
     "symbol": "PHDC",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-03-25",
       "price": 7.02,
@@ -352,6 +378,8 @@
     "symbol": "MPCO",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-03-26",
       "price": 1.75,
@@ -376,6 +404,8 @@
     "symbol": "COMI",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-04-03",
       "price": 79.7,
@@ -401,6 +431,8 @@
     "symbol": "FWRY",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-04-06",
       "price": 9.07,
@@ -422,6 +454,8 @@
     "symbol": "ORHD",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-04-09",
       "price": 21.75,
@@ -447,6 +481,8 @@
     "symbol": "EGAL",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-04-09",
       "price": 158.54,
@@ -480,6 +516,8 @@
     "symbol": "RAYA",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-05-11",
       "price": 2.75,
@@ -513,6 +551,8 @@
     "symbol": "MTIE",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-05-12",
       "price": 8.11,
@@ -538,6 +578,8 @@
     "symbol": "TMGH",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-05-13",
       "price": 53.2,
@@ -570,6 +612,8 @@
     "symbol": "RMDA",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-06-03",
       "price": 4.5,
@@ -595,6 +639,8 @@
     "symbol": "ISPH",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-06-15",
       "price": 8.89,
@@ -620,6 +666,8 @@
     "symbol": "HRHO",
     "cycle": 1,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-06-15",
       "price": 26.9,
@@ -644,6 +692,8 @@
     "symbol": "ORWE",
     "cycle": 1,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-07-07",
       "price": 23.13,
@@ -668,6 +718,8 @@
     "symbol": "PHDC",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-07-28",
       "price": 8.19,
@@ -700,6 +752,8 @@
     "symbol": "ABUK",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-08-18",
       "price": 52.4,
@@ -739,6 +793,8 @@
     "symbol": "EEII",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-09-17",
       "price": 1.86,
@@ -767,6 +823,8 @@
     "symbol": "JUFO",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-10-22",
       "price": 29.37,
@@ -788,6 +846,8 @@
     "symbol": "GBCO",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2025-10-28",
       "price": 24.43,
@@ -809,6 +869,8 @@
     "symbol": "ISPH",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-11-12",
       "price": 10.51,
@@ -830,6 +892,8 @@
     "symbol": "EGAL",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-11-25",
       "price": 187.01,
@@ -858,6 +922,8 @@
     "symbol": "COMI",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2025-12-11",
       "price": 106.17,
@@ -883,6 +949,8 @@
     "symbol": "FWRY",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-01-04",
       "price": 15.51,
@@ -904,6 +972,8 @@
     "symbol": "OIH",
     "cycle": 1,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-01-18",
       "price": 1.14,
@@ -925,6 +995,8 @@
     "symbol": "JUFO",
     "cycle": 3,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-01-21",
       "price": 26.71,
@@ -945,6 +1017,8 @@
     "symbol": "OLFI",
     "cycle": 2,
     "status": "OPEN",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-01-28",
       "price": 23.13,
@@ -965,6 +1039,8 @@
     "symbol": "EAST",
     "cycle": 2,
     "status": "OPEN",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-02-12",
       "price": 40.66,
@@ -989,6 +1065,8 @@
     "symbol": "MTIE",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-03-01",
       "price": 8.02,
@@ -1028,6 +1106,8 @@
     "symbol": "COMI",
     "cycle": 3,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-03-03",
       "price": 123.9,
@@ -1052,6 +1132,8 @@
     "symbol": "SKPC",
     "cycle": 2,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-03-15",
       "price": 18.01,
@@ -1076,6 +1158,8 @@
     "symbol": "RMDA",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-03-29",
       "price": 4.13,
@@ -1096,6 +1180,8 @@
     "symbol": "ATQA",
     "cycle": 1,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-05-06",
       "price": 10.01,
@@ -1139,6 +1225,8 @@
     "symbol": "FWRY",
     "cycle": 3,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-05-19",
       "price": 19.43,
@@ -1163,6 +1251,8 @@
     "symbol": "EMFD",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-05-21",
       "price": 10.19,
@@ -1191,6 +1281,8 @@
     "symbol": "OIH",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-06-07",
       "price": 1.36,
@@ -1211,6 +1303,8 @@
     "symbol": "EEII",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-06-11",
       "price": 2.32,
@@ -1232,6 +1326,8 @@
     "symbol": "TMGH",
     "cycle": 2,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-06-23",
       "price": 95.0,
@@ -1252,6 +1348,8 @@
     "symbol": "MPCO",
     "cycle": 2,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-06-28",
       "price": 1.77,
@@ -1272,6 +1370,8 @@
     "symbol": "EGAL",
     "cycle": 3,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-07-20",
       "price": 304.04,
@@ -1296,6 +1396,8 @@
     "symbol": "GBCO",
     "cycle": 3,
     "status": "OPEN",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-07-28",
       "price": 30.49,
@@ -1320,6 +1422,8 @@
     "symbol": "MCQE",
     "cycle": 2,
     "status": "CLOSED",
+    "portfolio_accepted": false,
+    "portfolio_rejection_reason": "MAX_PORTFOLIO_POSITIONS",
     "first_entry": {
       "date": "2026-07-29",
       "price": 183.02,
@@ -1340,6 +1444,8 @@
     "symbol": "MTIE",
     "cycle": 3,
     "status": "OPEN",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-08-18",
       "price": 8.95,
@@ -1360,6 +1466,8 @@
     "symbol": "ISPH",
     "cycle": 3,
     "status": "OPEN",
+    "portfolio_accepted": true,
+    "portfolio_rejection_reason": null,
     "first_entry": {
       "date": "2026-08-26",
       "price": 12.92,
