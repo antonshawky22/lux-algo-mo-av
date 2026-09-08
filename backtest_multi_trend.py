@@ -347,7 +347,7 @@ def backtest_stock(symbol, df):
             })
 
         # BUY L2
-        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.96:
+        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.98:
             old_pos = position
             state["position"] = 0.66
             state["avg_price"] = update_avg(avg_price, old_pos, price, state["position"])
