@@ -26,7 +26,7 @@ INITIAL_CAPITAL = 100000.0
 # ============================================================
 
 RSI_PERIOD = 14
-EMA100_PERIOD = 95
+EMA100_PERIOD = 93
 RUNUP_LOOKBACK = 160
 MAX_RUNUP_PERCENT = 80
 MAX_GAP_DOWN_PERCENT = -5
@@ -366,7 +366,7 @@ def backtest_stock(symbol, df):
             })
 
         # BUY L3
-        elif 0.65 < position < 1.0 and buy3 and price < avg_price * 0.95:
+        elif 0.65 < position < 1.0 and buy3 and price < avg_price * 0.94:
             old_pos = position
             state["position"] = 1.0
             state["avg_price"] = update_avg(avg_price, old_pos, price, state["position"])
