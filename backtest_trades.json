@@ -1286,18 +1286,18 @@
       "position_added": 0.33
     },
     "second_entry": {
-      "date": "2026-03-18",
-      "price": 17.1,
+      "date": "2026-03-17",
+      "price": 17.45,
       "position_added": 0.33
     },
     "third_entry": null,
     "exits": [],
-    "last_average_price": 17.555,
+    "last_average_price": 17.73,
     "final_exit_price": 18.89,
     "exit_date": "2026-09-07",
-    "profit_pct": 7.6,
+    "profit_pct": 6.54,
     "max_position": 0.66,
-    "peak_profit": 8.060381657647389,
+    "peak_profit": 6.993795826283127,
     "exit_reason": "END_OF_DATA"
   },
   {
