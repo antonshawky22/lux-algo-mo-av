@@ -92,7 +92,6 @@ SYMBOLS = {
     "AMOC": "AMOC",
     "FWRY": "FWRY",
     "COMI": "COMI",
-    "ADIB": "ADIB",
     "PHDC": "PHDC",
     "MCQE": "MCQE",
     "SKPC": "SKPC",
