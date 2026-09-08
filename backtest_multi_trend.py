@@ -48,7 +48,7 @@ STOP_L1 = -18
 STOP_L2 = -17
 STOP_L3 = -13
 TRAILING_TRIGGER = 36
-TRAILING_GIVEBACK = 12
+TRAILING_GIVEBACK = 11
 
 MIN_BARS = 40
 
@@ -347,7 +347,7 @@ def backtest_stock(symbol, df):
             })
 
         # BUY L2
-        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.97:
+        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.96:
             old_pos = position
             state["position"] = 0.66
             state["avg_price"] = update_avg(avg_price, old_pos, price, state["position"])
