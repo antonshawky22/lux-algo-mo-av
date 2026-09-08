@@ -31,7 +31,7 @@ RUNUP_LOOKBACK = 120
 MAX_RUNUP_PERCENT = 80
 MAX_GAP_DOWN_PERCENT = -5
 
-BUY1_RSI = 62
+BUY1_RSI = 60
 BUY2_RSI = 55
 BUY3_RSI = 48
 
@@ -347,7 +347,7 @@ def backtest_stock(symbol, df):
             })
 
         # BUY L2
-        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.96:
+        elif 0.32 < position < 0.50 and buy2 and price < avg_price * 0.97:
             old_pos = position
             state["position"] = 0.66
             state["avg_price"] = update_avg(avg_price, old_pos, price, state["position"])
