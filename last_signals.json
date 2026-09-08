@@ -5,12 +5,12 @@
     "entry_price": null
   },
   "OLFI": {
-    "trend": "↗️",
+    "trend": "🔛",
     "in_position": true,
     "entry_price": 22.9
   },
   "EMFD": {
-    "trend": "🔛",
+    "trend": "↗️",
     "in_position": false,
     "entry_price": null
   },
@@ -65,7 +65,7 @@
     "entry_price": null
   },
   "HRHO": {
-    "trend": "🔻",
+    "trend": "🔛",
     "in_position": false,
     "entry_price": null
   },
@@ -145,7 +145,7 @@
     "entry_price": null
   },
   "ADIB": {
-    "trend": "↗️",
+    "trend": "🔛",
     "in_position": true,
     "entry_price": 51.9
   },
