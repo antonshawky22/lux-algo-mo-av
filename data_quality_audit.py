@@ -32,13 +32,6 @@ AUDIT_FILE = "corporate_actions_audit.json"
 LARGE_MOVE_PERCENT = 20.0
 
 # Possible corporate-action ratios
-# Examples:
-# 0.50  -> 2:1 split / bonus-like adjustment
-# 0.333 -> 3:1
-# 0.25  -> 4:1
-# 2.00  -> reverse split / adjustment
-# 3.00  -> reverse split
-# 4.00  -> reverse split
 CORPORATE_RATIOS = [
     0.25,
     0.333,
@@ -60,6 +53,7 @@ VOLUME_JUMP_MULTIPLIER = 5.0
 # ------------------------------------------------------------
 
 def safe_float(value):
+
     try:
         value = float(value)
 
@@ -73,6 +67,7 @@ def safe_float(value):
 
 
 def percent_change(old, new):
+
     if old is None or old == 0 or new is None:
         return None
 
@@ -96,6 +91,7 @@ def closest_corporate_ratio(ratio):
             best_ratio = target
 
     if best_distance <= RATIO_TOLERANCE:
+
         return {
             "target_ratio": best_ratio,
             "distance": best_distance,
@@ -133,52 +129,93 @@ def classify_ratio(ratio):
     return "LARGE_PRICE_MOVE"
 
 
-# ------------------------------------------------------------
+# ============================================================
 # Load database
-# ------------------------------------------------------------
+# ============================================================
 
 print("=" * 80)
 print("EGX DATA QUALITY AUDIT")
 print("=" * 80)
 
 if not os.path.exists(INPUT_FILE):
+
     raise FileNotFoundError(
         f"Input database not found: {INPUT_FILE}"
     )
 
-with open(INPUT_FILE, "r", encoding="utf-8") as f:
+
+with open(
+    INPUT_FILE,
+    "r",
+    encoding="utf-8"
+) as f:
+
     database = json.load(f)
+
 
 print(f"Input file: {INPUT_FILE}")
 print(f"Symbols found: {len(database)}")
 print()
 
 
-# ------------------------------------------------------------
-# Audit
-# ------------------------------------------------------------
+# ============================================================
+# Audit structure
+# ============================================================
 
 audit = {
+
     "audit_info": {
-        "created_at": datetime.utcnow().isoformat() + "Z",
-        "input_file": INPUT_FILE,
-        "large_move_threshold_percent": LARGE_MOVE_PERCENT,
-        "ratio_tolerance": RATIO_TOLERANCE,
-        "corporate_ratios_checked": CORPORATE_RATIOS,
-        "prices_modified": False,
+
+        "created_at":
+            datetime.utcnow().isoformat() + "Z",
+
+        "input_file":
+            INPUT_FILE,
+
+        "large_move_threshold_percent":
+            LARGE_MOVE_PERCENT,
+
+        "ratio_tolerance":
+            RATIO_TOLERANCE,
+
+        "corporate_ratios_checked":
+            CORPORATE_RATIOS,
+
+        "prices_modified":
+            False,
     },
+
     "summary": {
-        "total_symbols": len(database),
-        "symbols_with_events": 0,
-        "total_events": 0,
-        "possible_corporate_actions": 0,
-        "large_price_moves": 0,
-        "ohlc_errors": 0,
-        "volume_anomalies": 0,
+
+        "total_symbols":
+            len(database),
+
+        "symbols_with_events":
+            0,
+
+        "total_events":
+            0,
+
+        "possible_corporate_actions":
+            0,
+
+        "large_price_moves":
+            0,
+
+        "ohlc_errors":
+            0,
+
+        "volume_anomalies":
+            0,
     },
+
     "symbols": {},
 }
 
+
+# ============================================================
+# Audit every symbol
+# ============================================================
 
 for symbol, stock in database.items():
 
@@ -188,7 +225,7 @@ for symbol, stock in database.items():
         continue
 
     # --------------------------------------------------------
-    # Sort from oldest to newest
+    # Sort dates oldest -> newest
     # --------------------------------------------------------
 
     dates = sorted(data.keys())
@@ -198,6 +235,10 @@ for symbol, stock in database.items():
     previous_date = None
     previous_row = None
 
+    # --------------------------------------------------------
+    # Process every trading day
+    # --------------------------------------------------------
+
     for date in dates:
 
         row = data.get(date, {})
@@ -205,15 +246,29 @@ for symbol, stock in database.items():
         if not isinstance(row, dict):
             continue
 
-        open_price = safe_float(row.get("Open"))
-        high_price = safe_float(row.get("High"))
-        low_price = safe_float(row.get("Low"))
-        close_price = safe_float(row.get("Close"))
-        volume = safe_float(row.get("Volume"))
+        open_price = safe_float(
+            row.get("Open")
+        )
 
-        # ----------------------------------------------------
+        high_price = safe_float(
+            row.get("High")
+        )
+
+        low_price = safe_float(
+            row.get("Low")
+        )
+
+        close_price = safe_float(
+            row.get("Close")
+        )
+
+        volume = safe_float(
+            row.get("Volume")
+        )
+
+        # ====================================================
         # OHLC integrity
-        # ----------------------------------------------------
+        # ====================================================
 
         if (
             open_price is not None
@@ -242,22 +297,38 @@ for symbol, stock in database.items():
             if ohlc_error:
 
                 event = {
-                    "date": date,
-                    "type": "OHLC_INTEGRITY_ERROR",
-                    "open": open_price,
-                    "high": high_price,
-                    "low": low_price,
-                    "close": close_price,
-                    "volume": volume,
+
+                    "date":
+                        date,
+
+                    "type":
+                        "OHLC_INTEGRITY_ERROR",
+
+                    "open":
+                        open_price,
+
+                    "high":
+                        high_price,
+
+                    "low":
+                        low_price,
+
+                    "close":
+                        close_price,
+
+                    "volume":
+                        volume,
                 }
 
                 symbol_events.append(event)
 
-                audit["summary"]["ohlc_errors"] += 1
+                audit["summary"][
+                    "ohlc_errors"
+                ] += 1
 
-        # ----------------------------------------------------
+        # ====================================================
         # Compare with previous day
-        # ----------------------------------------------------
+        # ====================================================
 
         if (
             previous_row is not None
@@ -268,32 +339,44 @@ for symbol, stock in database.items():
                 previous_row.get("Close")
             )
 
+            # ------------------------------------------------
+            # Price movement
+            # ------------------------------------------------
+
             if (
                 previous_close is not None
                 and close_price is not None
                 and previous_close > 0
             ):
 
-                ratio = close_price / previous_close
-
-                move_percent = (
-                    (ratio - 1.0) * 100.0
+                ratio = (
+                    close_price /
+                    previous_close
                 )
 
-                # ------------------------------------------------
-                # Large movement
-                # ------------------------------------------------
+                move_percent = (
+                    (ratio - 1.0) *
+                    100.0
+                )
+
+                # =================================================
+                # Large price movement
+                # =================================================
 
                 if abs(move_percent) >= LARGE_MOVE_PERCENT:
 
-                    ratio_match = closest_corporate_ratio(
-                        ratio
+                    ratio_match = (
+                        closest_corporate_ratio(
+                            ratio
+                        )
                     )
 
                     if ratio_match:
 
-                        event_type = classify_ratio(
-                            ratio
+                        event_type = (
+                            classify_ratio(
+                                ratio
+                            )
                         )
 
                         confidence = "HIGH"
@@ -304,7 +387,9 @@ for symbol, stock in database.items():
 
                     else:
 
-                        event_type = "LARGE_PRICE_MOVE"
+                        event_type = (
+                            "LARGE_PRICE_MOVE"
+                        )
 
                         confidence = "LOW"
 
@@ -313,25 +398,51 @@ for symbol, stock in database.items():
                         ] += 1
 
                     event = {
-                        "date": date,
-                        "previous_date": previous_date,
-                        "type": event_type,
-                        "confidence": confidence,
 
-                        "previous_close": previous_close,
-                        "current_close": close_price,
+                        "date":
+                            date,
 
-                        "ratio": round(ratio, 6),
-                        "move_percent": round(
-                            move_percent,
-                            2
-                        ),
+                        "previous_date":
+                            previous_date,
 
-                        "open": open_price,
-                        "high": high_price,
-                        "low": low_price,
-                        "close": close_price,
-                        "volume": volume,
+                        "type":
+                            event_type,
+
+                        "confidence":
+                            confidence,
+
+                        "previous_close":
+                            previous_close,
+
+                        "current_close":
+                            close_price,
+
+                        "ratio":
+                            round(
+                                ratio,
+                                6
+                            ),
+
+                        "move_percent":
+                            round(
+                                move_percent,
+                                2
+                            ),
+
+                        "open":
+                            open_price,
+
+                        "high":
+                            high_price,
+
+                        "low":
+                            low_price,
+
+                        "close":
+                            close_price,
+
+                        "volume":
+                            volume,
                     }
 
                     if ratio_match:
@@ -351,11 +462,13 @@ for symbol, stock in database.items():
                             6
                         )
 
-                    symbol_events.append(event)
+                    symbol_events.append(
+                        event
+                    )
 
-                # ------------------------------------------------
+                # =================================================
                 # Volume anomaly
-                # ------------------------------------------------
+                # =================================================
 
                 previous_volume = safe_float(
                     previous_row.get("Volume")
@@ -378,9 +491,15 @@ for symbol, stock in database.items():
                     ):
 
                         event = {
-                            "date": date,
-                            "previous_date": previous_date,
-                            "type": "VOLUME_SPIKE",
+
+                            "date":
+                                date,
+
+                            "previous_date":
+                                previous_date,
+
+                            "type":
+                                "VOLUME_SPIKE",
 
                             "previous_volume":
                                 previous_volume,
@@ -401,18 +520,24 @@ for symbol, stock in database.items():
                                 close_price,
                         }
 
-                        symbol_events.append(event)
+                        symbol_events.append(
+                            event
+                        )
 
                         audit["summary"][
                             "volume_anomalies"
                         ] += 1
 
+        # ----------------------------------------------------
+        # Move to next day
+        # ----------------------------------------------------
+
         previous_date = date
         previous_row = row
 
-    # --------------------------------------------------------
+    # ========================================================
     # Save symbol audit
-    # --------------------------------------------------------
+    # ========================================================
 
     if symbol_events:
 
@@ -425,17 +550,27 @@ for symbol, stock in database.items():
         ] += len(symbol_events)
 
         audit["symbols"][symbol] = {
-            "first_date": dates[0] if dates else None,
-            "last_date": dates[-1] if dates else None,
-            "total_days": len(dates),
-            "events_count": len(symbol_events),
-            "events": symbol_events,
+
+            "first_date":
+                dates[0] if dates else None,
+
+            "last_date":
+                dates[-1] if dates else None,
+
+            "total_days":
+                len(dates),
+
+            "events_count":
+                len(symbol_events),
+
+            "events":
+                symbol_events,
         }
 
 
-# ------------------------------------------------------------
+# ============================================================
 # Save audit report
-# ------------------------------------------------------------
+# ============================================================
 
 with open(
     AUDIT_FILE,
@@ -451,12 +586,12 @@ with open(
     )
 
 
-# ------------------------------------------------------------
+# ============================================================
 # Create CLEAN COPY
 #
 # IMPORTANT:
 # No prices are changed in this first version.
-# ------------------------------------------------------------
+# ============================================================
 
 with open(
     CLEAN_FILE,
@@ -472,9 +607,9 @@ with open(
     )
 
 
-# ------------------------------------------------------------
+# ============================================================
 # Console summary
-# ------------------------------------------------------------
+# ============================================================
 
 print("=" * 80)
 print("AUDIT COMPLETE")
@@ -519,27 +654,160 @@ print()
 
 print("Files created:")
 
-print(f"  - {CLEAN_FILE}")
-print(f"  - {AUDIT_FILE}")
+print(
+    f"  - {CLEAN_FILE}"
+)
+
+print(
+    f"  - {AUDIT_FILE}"
+)
 
 print()
 
 print(
-    "IMPORTANT: "
-    "No prices were modified."
+    "IMPORTANT: No prices were modified."
 )
 
 print(
-    "The CLEAN file is currently an identical copy "
-    "of the original database."
+    "The CLEAN file is currently an identical "
+    "copy of the original database."
 )
 
 print("=" * 80)
 
 
-# ------------------------------------------------------------
-# Print suspicious symbols
-# ------------------------------------------------------------
+# ============================================================
+# PRINT POSSIBLE CORPORATE ACTIONS
+# ============================================================
+
+print()
+print("=" * 80)
+print("POSSIBLE CORPORATE ACTIONS - DETAILS")
+print("=" * 80)
+
+corporate_action_count = 0
+
+for symbol, info in audit["symbols"].items():
+
+    for event in info.get("events", []):
+
+        event_type = event.get("type", "")
+
+        if event_type.startswith(
+            "POSSIBLE_"
+        ):
+
+            corporate_action_count += 1
+
+            print("-" * 80)
+
+            print(
+                f"Event #{corporate_action_count}"
+            )
+
+            print(
+                f"Symbol          : "
+                f"{symbol}"
+            )
+
+            print(
+                f"Date            : "
+                f"{event.get('date')}"
+            )
+
+            print(
+                f"Previous Date   : "
+                f"{event.get('previous_date')}"
+            )
+
+            print(
+                f"Type            : "
+                f"{event.get('type')}"
+            )
+
+            print(
+                f"Confidence      : "
+                f"{event.get('confidence')}"
+            )
+
+            print(
+                f"Previous Close  : "
+                f"{event.get('previous_close')}"
+            )
+
+            print(
+                f"Current Close   : "
+                f"{event.get('current_close')}"
+            )
+
+            print(
+                f"Ratio           : "
+                f"{event.get('ratio')}"
+            )
+
+            print(
+                f"Matched Ratio   : "
+                f"{event.get('matched_ratio')}"
+            )
+
+            print(
+                f"Ratio Distance  : "
+                f"{event.get('ratio_distance')}"
+            )
+
+            print(
+                f"Move %          : "
+                f"{event.get('move_percent')}"
+            )
+
+            print(
+                f"Open            : "
+                f"{event.get('open')}"
+            )
+
+            print(
+                f"High            : "
+                f"{event.get('high')}"
+            )
+
+            print(
+                f"Low             : "
+                f"{event.get('low')}"
+            )
+
+            print(
+                f"Close           : "
+                f"{event.get('close')}"
+            )
+
+            print(
+                f"Volume          : "
+                f"{event.get('volume')}"
+            )
+
+
+if corporate_action_count == 0:
+
+    print(
+        "No possible corporate actions found."
+    )
+
+else:
+
+    print("-" * 80)
+
+    print(
+        f"TOTAL POSSIBLE CORPORATE ACTIONS: "
+        f"{corporate_action_count}"
+    )
+
+
+print("=" * 80)
+
+
+# ============================================================
+# PRINT SUSPICIOUS SYMBOLS
+# ============================================================
 
 if audit["symbols"]:
 
@@ -559,4 +827,30 @@ if audit["symbols"]:
 else:
 
     print()
-    print("No suspicious events detected.")
+    print(
+        "No suspicious events detected."
+    )
+
+
+# ============================================================
+# FINAL MESSAGE
+# ============================================================
+
+print()
+print("=" * 80)
+print("DATA QUALITY AUDIT FINISHED")
+print("=" * 80)
+
+print(
+    "Original database was NOT modified."
+)
+
+print(
+    "No prices were corrected automatically."
+)
+
+print(
+    "Do NOT use the CLEAN file for backtesting yet."
+)
+
+print("=" * 80)
