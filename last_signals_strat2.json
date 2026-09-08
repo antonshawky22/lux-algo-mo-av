@@ -190,8 +190,8 @@
   },
   "ADIB": {
     "cycle": 1,
-    "position": 0.0,
-    "avg_price": 0.0,
+    "position": 0.33,
+    "avg_price": 52.01,
     "peak_profit": 0.0,
     "realized_pnl_tracker": []
   },

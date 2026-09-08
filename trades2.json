@@ -253,7 +253,21 @@
       "profit_pct": null
     }
   ],
-  "ADIB": [],
+  "ADIB": [
+    {
+      "symbol": "ADIB",
+      "cycle": 1,
+      "status": "OPEN",
+      "first_entry": "2026-09-08 with price 52.01",
+      "second_entry": null,
+      "third_entry": null,
+      "last_totally_average_price": 52.01,
+      "exits": [],
+      "exit_price": null,
+      "exit_date": null,
+      "profit_pct": null
+    }
+  ],
   "PHDC": [
     {
       "symbol": "PHDC",
