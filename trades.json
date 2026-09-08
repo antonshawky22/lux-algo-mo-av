@@ -370,5 +370,11 @@
     "entry_trend": "🔛",
     "entry_price": 2.35,
     "entry_date": "2026-09-03"
+  },
+  {
+    "symbol": "EAST",
+    "entry_trend": "🔛",
+    "entry_price": 35.35,
+    "entry_date": "2026-09-08"
   }
 ]

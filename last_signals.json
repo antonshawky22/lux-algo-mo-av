@@ -21,8 +21,8 @@
   },
   "EAST": {
     "trend": "🔛",
-    "in_position": false,
-    "entry_price": null
+    "in_position": true,
+    "entry_price": 35.35
   },
   "EFIH": {
     "trend": "↗️",
@@ -65,7 +65,7 @@
     "entry_price": null
   },
   "HRHO": {
-    "trend": "🔛",
+    "trend": "🔻",
     "in_position": false,
     "entry_price": null
   },
