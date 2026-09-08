@@ -166,27 +166,6 @@
     "exit_reason": "SELL L2"
   },
   {
-    "symbol": "ADIB",
-    "cycle": 1,
-    "status": "CLOSED",
-    "first_entry": {
-      "date": "2025-03-03",
-      "price": 40.84,
-      "position_added": 0.33
-    },
-    "second_entry": null,
-    "third_entry": null,
-    "exits": [],
-    "last_average_price": 40.84,
-    "final_exit_price": 20.94,
-    "exit_date": "2025-05-26",
-    "profit_pct": -48.73,
-    "max_position": 0.33,
-    "peak_profit": 7.468168462291863,
-    "exit_reason": "STOP LOSS",
-    "stop_trigger_profit": -48.73
-  },
-  {
     "symbol": "ETEL",
     "cycle": 1,
     "status": "CLOSED",
@@ -1563,26 +1542,6 @@
     "profit_pct": 2.01,
     "max_position": 0.33,
     "peak_profit": 4.102167182662534,
-    "exit_reason": "END_OF_DATA"
-  },
-  {
-    "symbol": "ADIB",
-    "cycle": 2,
-    "status": "OPEN",
-    "first_entry": {
-      "date": "2026-09-08",
-      "price": 51.75,
-      "position_added": 0.33
-    },
-    "second_entry": null,
-    "third_entry": null,
-    "exits": [],
-    "last_average_price": 51.75,
-    "final_exit_price": 51.75,
-    "exit_date": "2026-09-08",
-    "profit_pct": 0.0,
-    "max_position": 0.33,
-    "peak_profit": 0.0,
     "exit_reason": "END_OF_DATA"
   }
 ]
