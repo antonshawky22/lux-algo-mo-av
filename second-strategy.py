@@ -178,7 +178,7 @@ for name, ticker in symbols.items():
     highest_80 = float(df["High"].tail(lookback).max())
     
     run_up_percent = ((highest_80 - lowest_80) / lowest_80) * 100 if lowest_80 > 0 else 0.0
-    safe_to_buy = run_up_percent <= 60.0
+    safe_to_buy = run_up_percent <= 80.0
 
     # فلتر فجوة الهبوط: فحص آخر 3 جلسات متتالية
     gap1 = ((df["Open"].iloc[-1] - df["Close"].iloc[-2]) / df["Close"].iloc[-2]) * 100
@@ -191,12 +191,12 @@ for name, ticker in symbols.items():
         df["EMA100"].iloc[-1] > df["EMA100"].iloc[-5]
         and df["EMA100"].iloc[-5] > df["EMA100"].iloc[-10]
         and df["EMA100"].iloc[-1] > df["EMA100"].iloc[-10] * 1.002
-        and price <= df["EMA100"].iloc[-1] * 1.08
+        and price <= df["EMA100"].iloc[-1] * 1.07
     )
     
-    buy1 = safe_to_buy and ema_up and no_gap_down and rsi_val <= 53
-    buy2 = safe_to_buy and ema_up and no_gap_down and rsi_val <= 33
-    buy3 = safe_to_buy and ema_up and no_gap_down and rsi_val <= 28
+    buy1 = safe_to_buy and ema_up and no_gap_down and rsi_val <= 60
+    buy2 = safe_to_buy and ema_up and no_gap_down and rsi_val <= 55
+    buy3 = safe_to_buy and ema_up and no_gap_down and rsi_val <= 48
 
     # حساب الربح اللحظي الحالي
     profit = 0.0
@@ -239,7 +239,7 @@ for name, ticker in symbols.items():
         }
         trades_history[name].append(new_trade)
 
-    elif 0.32 < s["position"] < 0.5 and buy2 and price < s["avg_price"] * 0.95:
+    elif 0.32 < s["position"] < 0.5 and buy2 and price < s["avg_price"] * 0.97:
         old_pos = s["position"]
         s["position"] = 0.66
         s["avg_price"] = update_avg(s["avg_price"], old_pos, price, s["position"])
@@ -251,7 +251,7 @@ for name, ticker in symbols.items():
             active_trade["second_entry"] = f"{current_date} with price {price:.2f}"
             active_trade["last_totally_average_price"] = round(s["avg_price"], 2)
 
-    elif 0.65 < s["position"] < 1 and buy3 and price < s["avg_price"] * 0.91:
+    elif 0.65 < s["position"] < 1 and buy3 and price < s["avg_price"] * 0.94:
         old_pos = s["position"]
         s["position"] = 1.0
         s["avg_price"] = update_avg(s["avg_price"], old_pos, price, s["position"])
@@ -273,14 +273,14 @@ for name, ticker in symbols.items():
 
         stop_triggered = False
 
-        if s["position"] <= 0.33 and profit <= -22:
+        if s["position"] <= 0.33 and profit <= -18:
             stop_triggered = True
-        elif s["position"] <= 0.66 and profit <= -20:
+        elif s["position"] <= 0.66 and profit <= -17:
             stop_triggered = True
-        elif s["position"] == 1.0 and profit <= -15:
+        elif s["position"] == 1.0 and profit <= -13:
             stop_triggered = True
 
-        if s["peak_profit"] > 40 and (s["peak_profit"] - profit) >= 13:
+        if s["peak_profit"] > 36 and (s["peak_profit"] - profit) >= 11:
             stop_triggered = True
 
         # دالة مساعدة لحساب إجمالي الربح الموزون
