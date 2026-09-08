@@ -1,7 +1,7 @@
 {
   "strategy": "EGX Ladder Cycle System v3.4 Optimized",
-  "backtest_version": "Full historical state-machine backtest v1.1",
-  "description": "Historical simulation matching the live Ladder Strategy v3.4 logic with optimized RSI & Stop Loss parameters.",
+  "backtest_version": "Full historical state-machine backtest v1.1 + robustness diagnostics",
+  "description": "Historical simulation matching the live Ladder Strategy v3.4 logic with robustness diagnostics.",
   "data_file": "egx_history_database_v2.json",
   "parameters": {
     "rsi_period": 14,
@@ -22,7 +22,9 @@
     "stop_l2": -17,
     "stop_l3": -13,
     "trailing_trigger": 36,
-    "trailing_giveback": 11
+    "trailing_giveback": 11,
+    "max_portfolio_positions": 8,
+    "position_size_percent": 12.5
   },
   "statistics": {
     "total_closed_trades": 45,
@@ -39,6 +41,9 @@
     "realistic_compound_return_percent": 306.44,
     "maximum_drawdown_percent": 6.09,
     "stress_drawdown_percent": 27.69,
+    "worst_10_percent_average_loss": -33.39,
+    "worst_20_percent_average_loss": -26.56,
+    "worst_trade_percent": -48.73,
     "open_positions": 18
   },
   "ladder_statistics": {
