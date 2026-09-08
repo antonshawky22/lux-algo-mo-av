@@ -3187,4 +3187,102 @@ print(
 
 print(
     f"Max Losing Streak   : "
-    f"{max_losing_st
+    f"{max_losing_streak}"
+)
+
+print(
+    f"Max Winning Streak  : "
+    f"{max_winning_streak}"
+)
+
+print(
+    f"Open Positions      : "
+    f"{len(open_trades)}"
+)
+
+print("\n" + "-" * 80)
+print("PORTFOLIO CAPACITY")
+print("-" * 80)
+
+print(
+    f"Max Positions       : "
+    f"{MAX_PORTFOLIO_POSITIONS}"
+)
+
+print(
+    f"Position Size       : "
+    f"{POSITION_SIZE * 100:.2f}%"
+)
+
+print(
+    f"Max Simultaneous    : "
+    f"{max_simultaneous_positions}"
+)
+
+print(
+    f"Rejected Closed     : "
+    f"{rejected_trade_count}"
+)
+
+print(
+    f"Rejected Open       : "
+    f"{rejected_open_count}"
+)
+
+print(
+    f"Total Rejected      : "
+    f"{total_rejected}"
+)
+
+print("\n" + "-" * 80)
+print("LADDER STATISTICS")
+print("-" * 80)
+
+print(
+    f"BUY L1              : "
+    f"{buy_l1_count}"
+)
+
+print(
+    f"BUY L2              : "
+    f"{buy_l2_count}"
+)
+
+print(
+    f"BUY L3              : "
+    f"{buy_l3_count}"
+)
+
+print(
+    f"SELL L1             : "
+    f"{sell_l1_count}"
+)
+
+print(
+    f"SELL L2             : "
+    f"{sell_l2_count}"
+)
+
+print(
+    f"FULL EXIT            : "
+    f"{full_exit_count}"
+)
+
+print(
+    f"STOP LOSS           : "
+    f"{stop_count}"
+)
+
+print(
+    f"TRAILING STOP       : "
+    f"{trailing_stop_count}"
+)
+
+print(
+    f"Trades Reaching L3  : "
+    f"{l3_completed}"
+)
+
+print("\n" + "=" * 80)
+print("BACKTEST COMPLETED")
+print("=" * 80)
