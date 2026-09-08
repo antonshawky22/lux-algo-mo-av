@@ -25,7 +25,7 @@ INITIAL_CAPITAL = 100000.0
 # LIVE PARAMETERS - ACTIVE USED ONLY
 # ============================================================
 
-RSI_PERIOD = 13
+RSI_PERIOD = 14
 EMA100_PERIOD = 95
 RUNUP_LOOKBACK = 160
 MAX_RUNUP_PERCENT = 80
